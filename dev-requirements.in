@@ -1,0 +1,8 @@
+-r requirements.in
+django-debug-toolbar
+ipython
+black
+isort
+flake8
+pytest
+pytest-django
