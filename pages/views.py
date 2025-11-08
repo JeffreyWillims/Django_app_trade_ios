@@ -1,3 +1,21 @@
-from django.shortcuts import render
+from django.views.generic import TemplateView
 
-# Create your views here.
+class IndexView(TemplateView):
+    template_name = 'pages/index.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'IosTrade - Главная'
+        context['content'] = "Магазин техники Apple"
+        return context
+
+
+class AboutView(TemplateView):
+    template_name = 'pages/about.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'Home - О нас'
+        context['content'] = "О нас"
+        context['text_on_page'] = "Текст о том почему этот магазин такой классный..."
+        return context
