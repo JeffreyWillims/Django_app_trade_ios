@@ -58,7 +58,7 @@
                                 <li><a class="dropdown-item  text-white" href="carts/cart.html">Корзина</a></li>
                                 <li><a class="dropdown-item  text-white" href="users/profile.html">Личный кабинет</a>
                                 </li>
-                                <li><a class="dropdown-item  text-white" href="#">Админ панель</a></li>
+                                <li><a class="dropdown-item  text-white" href='{% url "admin:index" %}'>Админ панель</a></li>
                                 <li>
                                     <hr class="dropdown-divider">
                                 </li>
@@ -87,13 +87,9 @@
                             height="16">
                     </button>
                     <ul class="dropdown-menu bg-dark" data-bs-theme="dark">
-                        <li><a class="dropdown-item text-white" href="goods/catalog.html">Все товары</a></li>
-                        <li><a class="dropdown-item text-white" href="goods/catalog.html">iPhone</a></li>
-                        <li><a class="dropdown-item text-white" href="goods/catalog.html">iPad</a></li>
-                        <li><a class="dropdown-item text-white" href="goods/catalog.html">Mac</a></li>
-                        <li><a class="dropdown-item text-white" href="goods/catalog.html">Watch</a></li>
-                        <li><a class="dropdown-item text-white" href="goods/catalog.html">AirPods</a></li>
-                        <li><a class="dropdown-item text-white" href="goods/catalog.html">Аксессуары</a></li>
+                        {% for category in categories %}
+                            <li><a class="dropdown-item text-white" href="{% url 'products:category' category.slug %}">{{ category.name }}</a></li>
+                        {% endfor %}
                     </ul>
                 </div>
                 <!-- Значек корзины, вызывает модальное окно -->
