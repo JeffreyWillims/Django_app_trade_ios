@@ -4,36 +4,49 @@ from .models import Product, Category
 
 
 class ProductListView(ListView):
-    """
-    Представление для отображения списка всех продуктов,
-    с возможностью фильтрации по категориям.
-    """
     model = Product
     template_name = 'products/product_list.html'
-    context_object_name = 'products'  # Имя, под которым список продуктов будет доступен в шаблоне
-    paginate_by = 9  # Включаем пагинацию для масштабируемости
+    context_object_name = 'products'
+    paginate_by = 9
 
     def get_queryset(self):
         """
-        Переопределяем queryset для добавления фильтрации и оптимизации.
+        Переопределяем queryset для добавления ВСЕЙ нашей логики:
+        1. Фильтрация по категории.
+        2. Фильтрация по акции.
+        3. Сортировка.
         """
-        queryset = super().get_queryset()
+        # 1. Получаем базовый queryset
+        queryset = super().get_queryset().select_related('category')
+
+        # 2. Получаем 'category_slug' из URL.
+        # self.kwargs - это словарь с именованными параметрами из URL.
+        # Он заполняется благодаря <slug:category_slug> в твоем urls.py
         category_slug = self.kwargs.get('category_slug')
 
-        # Оптимизация: select_related загружает данные категории одним JOIN-запросом,
-        # предотвращая "N+1" проблему. Это критически важно для производительности.
+        # 3. Применяем фильтр по категории, ЕСЛИ мы на странице категории
         if category_slug:
-            return queryset.filter(category__slug=category_slug).select_related('category')
+            queryset = queryset.filter(category__slug=category_slug)
 
-        return queryset.select_related('category')
+        # 4. Получаем параметры фильтров и сортировки из GET-запроса
+        on_sale = self.request.GET.get('on_sale')
+        order_by = self.request.GET.get('order_by')
+
+        # 5. Применяем фильтр по акции
+        if on_sale == 'on':
+            queryset = queryset.filter(discount__gt=0)
+
+        # 6. Применяем сортировку
+        if order_by and order_by != 'default':
+            queryset = queryset.order_by(order_by)
+
+        return queryset
 
     def get_context_data(self, **kwargs):
-        """
-        Добавляем в контекст список всех категорий для отображения в сайдбаре.
-        """
         context = super().get_context_data(**kwargs)
         context['title'] = 'Каталог'
         context['categories'] = Category.objects.all()
+        context['is_catalog_page'] = True
         return context
 
 

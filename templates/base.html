@@ -79,19 +79,32 @@
             <!-- Каталог и корзина с фиксированным расположением на странице -->
             <div class="row mt-1 position-fixed z-3">
                 <!-- Каталог -->
+                <!-- Каталог (Умный Переключатель) -->
                 <div class="dropdown mb-2">
+
+                {# --- ЛОГИКА ПЕРЕКЛЮЧАТЕЛЯ --- #}
+                {% if is_catalog_page %}
+                {# Если мы на странице каталога, делаем кнопку с выпадающим списком #}
                     <button class="btn btn-secondary dropdown-toggle btn-dark" type="button" data-bs-toggle="dropdown"
                         aria-expanded="false">
-                        Каталог
-                        <img class="mx-1" src='{% static "icons/grid-fill.svg" %}' alt="Catalog Icon" width="16"
-                            height="16">
+                            Каталог
+                        <img class="mx-1" src='{% static "icons/grid-fill.svg" %}' alt="Catalog Icon" width="16" height="16">
                     </button>
                     <ul class="dropdown-menu bg-dark" data-bs-theme="dark">
+                    <li><a class="dropdown-item text-white" href="{% url 'products:index' %}">Все товары</a></li>
                         {% for category in categories %}
                             <li><a class="dropdown-item text-white" href="{% url 'products:category' category.slug %}">{{ category.name }}</a></li>
                         {% endfor %}
                     </ul>
-                </div>
+                {% else %}
+                {# Если мы на ЛЮБОЙ ДРУГОЙ странице, делаем кнопку-ссылку #}
+                    <a href="{% url 'products:index' %}" class="btn btn-secondary btn-dark">
+                        Каталог
+                            <img class="mx-1" src='{% static "icons/grid-fill.svg" %}' alt="Catalog Icon" width="16" height="16">
+                    </a>
+                {% endif %}
+
+            </div>
                 <!-- Значек корзины, вызывает модальное окно -->
                 <div>
                     <button type="button" class="btn btn-dark btn-secondary d-flex" id="modalButton"
