@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+<!DOCTYPE html>
+<html lang="ru">
+
+{% block css %}
+    <link rel="stylesheet" href='{% static "css/my_footer_css.css" %}'>
+{% endblock %}
+
+{% block content %}
+    <h1 class="mt-5 pt-5"><strong>{{ content }}</strong></h1>
+{% endblock %}
+
+{% block footer %}
+    <footer class="py-4 bg-dark">
+        <div class="container">
+            <p class="m-0 text-center text-white"> &copy; Apple IosTrade</p>
+        </div>
+    </footer>
+{% endblock %}
+
+

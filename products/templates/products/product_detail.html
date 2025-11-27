@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block css %}
+    {# Подключаем наш кастомный CSS для каталога, он подойдет и сюда #}
+    <link rel="stylesheet" href="{% static 'css/ios_catalog.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="container mt-5 mb-5">
+    <div class="card custom-shadow border-0" style="border-radius: var(--ios-border-radius);">
+        <div class="row g-0">
+            <!-- Левая колонка: Изображение товара -->
+            <div class="col-lg-6">
+                {% if product.image %}
+                    <a href="#" data-bs-toggle="modal" data-bs-target="#imageModal">
+                        <img src="{{ product.image.url }}" class="img-fluid rounded-start" alt="{{ product.name }}" style="border-top-left-radius: var(--ios-border-radius); border-bottom-left-radius: var(--ios-border-radius);">
+                    </a>
+                {% else %}
+                    <img src="{% static 'images/Not found image.png' %}" class="img-fluid rounded-start" alt="Изображение отсутствует">
+                {% endif %}
+            </div>
+
+            <!-- Правая колонка: Описание и покупка -->
+            <div class="col-lg-6 d-flex flex-column p-4">
+                <!-- Категория товара -->
+                <div class="mb-2">
+                    <a href="{% url 'products:category' product.category.slug %}" class="text-muted text-decoration-none">{{ product.category.name }}</a>
+                </div>
+
+                <!-- Название товара -->
+                <h1 class="card-title fw-bold">{{ product.name }}</h1>
+
+                <!-- Описание товара -->
+                <p class="card-text fs-5 my-4 flex-grow-1">{{ product.description }}</p>
+
+                <!-- Цена и скидка -->
+                <div class="mb-4">
+                    {% if product.discount > 0 %}
+                        <span class="fs-4 text-muted me-2"><s>{{ product.price }} ₽</s></span>
+                        <span class="fs-2 fw-bold text-danger">{{ product.sell_price }} ₽</span>
+                        <span class="badge bg-danger ms-2">Скидка {{ product.discount }} %</span>
+                    {% else %}
+                        <span class="fs-2 fw-bold">{{ product.price }} ₽</span>
+                    {% endif %}
+                </div>
+
+                <!-- Кнопка "В корзину" и наличие -->
+                <div class="mt-auto">
+                    <div class="d-grid gap-2"> {# d-grid растянет кнопку на всю ширину #}
+                        <a href="#" class="btn btn-primary btn-lg" style="background-color: var(--ios-blue); border: none; border-radius: 12px;">Добавить в корзину</a>
+                    </div>
+                    {% if product.quantity > 0 %}
+                        <p class="text-success text-center mt-2"><small>В наличии ({{ product.quantity }} шт.)</small></p>
+                    {% else %}
+                        <p class="text-danger text-center mt-2"><small>Нет в наличии</small></p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Модальное окно для увеличения изображения -->
+{% if product.image %}
+<div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl modal-dialog-centered">
+        <div class="modal-content" style="background: transparent; border: none;">
+            <div class="modal-body p-0">
+                <button type="button" class="btn-close btn-close-white position-absolute top-0 end-0 m-3" data-bs-dismiss="modal" aria-label="Закрыть" style="z-index: 1056;"></button>
+                <img src="{{ product.image.url }}" class="img-fluid" alt="{{ product.name }}">
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}
+{% endblock %}

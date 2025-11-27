@@ -14,10 +14,21 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from importlib.metadata import requires
 
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
+from django.conf import settings  # <-- Импортируем settings
+from django.conf.urls.static import static  # <-- Импортируем static
 
 urlpatterns = [
-    path("admin/", admin.site.urls),
+    path('admin/', admin.site.urls),
+
+    path('', include('pages.urls', namespace='pages')),
+
+    path('products/', include('products.urls', namespace='products')),
 ]
+
+# --- Маршрут для раздачи медиафайлов в режиме разработки ---
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

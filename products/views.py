@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.db.models import Q
 from django.views.generic import ListView, DetailView
 from .models import Product, Category
 
@@ -18,6 +18,17 @@ class ProductListView(ListView):
         """
         # 1. Получаем базовый queryset
         queryset = super().get_queryset().select_related('category')
+
+        # --- Начало логики Поиска ---
+        query = self.request.GET.get('q')
+        if query:
+            # Q-объекты позволяют строить сложные запросы с использованием "ИЛИ"
+            # Мы ищем совпадение query в поле "name" или в поле 'description'
+            # __icontains означает 'содержит, без учета регистра'
+            queryset = queryset.filter(
+                Q(name__icontains=query) | Q(description__icontains=query)
+            )
+        # --- КОНЕЦ НОВОЙ ЛОГИКИ ПОИСКА ---
 
         # 2. Получаем 'category_slug' из URL.
         # self.kwargs - это словарь с именованными параметрами из URL.

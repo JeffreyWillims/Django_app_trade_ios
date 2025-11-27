@@ -1,0 +1,1260 @@
+[
+{
+  "model": "products.category",
+  "pk": 1,
+  "fields": {
+    "name": "iPhone",
+    "slug": "iphone"
+  }
+},
+{
+  "model": "products.category",
+  "pk": 2,
+  "fields": {
+    "name": "iPad",
+    "slug": "ipad"
+  }
+},
+{
+  "model": "products.category",
+  "pk": 3,
+  "fields": {
+    "name": "Mac",
+    "slug": "mac"
+  }
+},
+{
+  "model": "products.category",
+  "pk": 4,
+  "fields": {
+    "name": "Apple Watch",
+    "slug": "apple-watch"
+  }
+},
+{
+  "model": "products.category",
+  "pk": 5,
+  "fields": {
+    "name": "AirPods",
+    "slug": "airpods"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 4,
+  "fields": {
+    "name": "Apple iPhone 17 White",
+    "slug": "apple-iphone-17-white",
+    "description": "Смартфон Apple iPhone 17 — это гармоничное сочетание новых технологий и эргономичного дизайна. Сверхъяркий экран, продвинутая система камер и интеллектуальные функции на базе ИИ создают универсальное устройство для профессионалов и творческих пользователей. Внутренняя память 256 Gb | Белый | Новинка Apple 2025 | Оригинальная техника Apple | Новое, запечатанное устройство| Официальная гарантия 12 месяцев | Модель: iPhone 17 | Диагональ: 6.3 | Фотокамера: 48 МП| Процессор: Apple A19",
+    "image": "products_images/apple-iphone-17-white_bwu2Pbp.webp",
+    "price": "74500.00",
+    "discount": "5.00",
+    "quantity": 10,
+    "category": 1
+  }
+},
+{
+  "model": "products.product",
+  "pk": 5,
+  "fields": {
+    "name": "Apple iPhone 17 Sage",
+    "slug": "apple-iphone-17-sage",
+    "description": "Смартфон Apple iPhone 17 — это гармоничное сочетание новых технологий и эргономичного дизайна. Сверхъяркий экран, продвинутая система камер и интеллектуальные функции на базе ИИ создают универсальное устройство для профессионалов и творческих пользователей. Внутренняя память 256 Gb | Зеленый | Новинка Apple 2025 | Оригинальная техника Apple | Новое, запечатанное устройство| Официальная гарантия 12 месяцев | Модель: iPhone 17 | Диагональ: 6.3 | Фотокамера: 48 МП| Процессор: Apple A19",
+    "image": "products_images/apple-iphone-17-sage_zZQGsTY.webp",
+    "price": "77000.00",
+    "discount": "7.00",
+    "quantity": 17,
+    "category": 1
+  }
+},
+{
+  "model": "products.product",
+  "pk": 6,
+  "fields": {
+    "name": "Apple iPhone 17 Mist Blue",
+    "slug": "apple-iphone-17-mist-blue",
+    "description": "Смартфон Apple iPhone 17 — это гармоничное сочетание новых технологий и эргономичного дизайна. Сверхъяркий экран, продвинутая система камер и интеллектуальные функции на базе ИИ создают универсальное устройство для профессионалов и творческих пользователей.  Внутренняя память 256 Gb | Голубой | Новинка Apple 2025 | Оригинальная техника Apple | Новое, запечатанное устройство| Официальная гарантия 12 месяцев | Модель: iPhone 17 | Диагональ: 6.3 | Фотокамера: 48 МП| Процессор: Apple A19",
+    "image": "products_images/apple-iphone-17-mist-blue_NnHYLQc.webp",
+    "price": "74500.00",
+    "discount": "5.00",
+    "quantity": 5,
+    "category": 1
+  }
+},
+{
+  "model": "products.product",
+  "pk": 7,
+  "fields": {
+    "name": "Apple iPhone 17 Black",
+    "slug": "apple-iphone-17-black",
+    "description": "Смартфон Apple iPhone 17 — это гармоничное сочетание новых технологий и эргономичного дизайна. Сверхъяркий экран, продвинутая система камер и интеллектуальные функции на базе ИИ создают универсальное устройство для профессионалов и творческих пользователей.  Внутренняя память 256 Gb | Черный | Новинка Apple 2025 | Оригинальная техника Apple | Новое, запечатанное устройство| Официальная гарантия 12 месяцев | Модель: iPhone 17 | Диагональ: 6.3 | Фотокамера: 48 МП| Процессор: Apple A19",
+    "image": "products_images/apple-iphone-17-black_KzX7qZY.webp",
+    "price": "75300.00",
+    "discount": "5.00",
+    "quantity": 7,
+    "category": 1
+  }
+},
+{
+  "model": "products.product",
+  "pk": 8,
+  "fields": {
+    "name": "Apple iPhone 17 Lavender",
+    "slug": "apple-iphone-17-lavender",
+    "description": "Смартфон Apple iPhone 17 — это гармоничное сочетание новых технологий и эргономичного дизайна. Сверхъяркий экран, продвинутая система камер и интеллектуальные функции на базе ИИ создают универсальное устройство для профессионалов и творческих пользователей. Внутренняя память 256 Gb | Лавандовый | Новинка Apple 2025 | Оригинальная техника Apple | Новое, запечатанное устройство| Официальная гарантия 12 месяцев | Модель: iPhone 17 | Диагональ: 6.3 | Фотокамера: 48 МП| Процессор: Apple A19",
+    "image": "products_images/apple-iphone-17-lavender_jkmTINe.webp",
+    "price": "76200.00",
+    "discount": "15.00",
+    "quantity": 5,
+    "category": 1
+  }
+},
+{
+  "model": "products.product",
+  "pk": 9,
+  "fields": {
+    "name": "Apple iPhone Air Space Black",
+    "slug": "apple-iphone-air-space-black",
+    "description": "Apple iPhone Air — смартфон девятнадцатого поколения, разработанный компанией Apple Inc. Внутренняя память 256 Gb | Космический черный | Новинка Apple 2025 | Оригинальная техника Apple | Новое, запечатанное устройство | Официальная гарантия 12 месяцев | Модель: iPhone 17 Air | Диагональ: 6.9 | Фотокамера: 48 МП| Процессор: Apple A19 Pro",
+    "image": "products_images/apple-iphone-air-space-black_RV0qF2B.webp",
+    "price": "77200.00",
+    "discount": "0.00",
+    "quantity": 7,
+    "category": 1
+  }
+},
+{
+  "model": "products.product",
+  "pk": 10,
+  "fields": {
+    "name": "Apple iPhone Air Cloud White",
+    "slug": "apple-iphone-air-cloud-white",
+    "description": "Apple iPhone Air — смартфон девятнадцатого поколения, разработанный компанией Apple Inc. Внутренняя память 256 Gb | Белый | Новинка Apple 2025 | Оригинальная техника Apple | Новое, запечатанное устройство | Официальная гарантия 12 месяцев | Модель: iPhone 17 Air | Диагональ: 6.9 | Фотокамера: 48 МП| Процессор: Apple A19 Pro",
+    "image": "products_images/apple-iphone-air-cloud-white_gaJXAzF.webp",
+    "price": "76600.00",
+    "discount": "0.00",
+    "quantity": 6,
+    "category": 1
+  }
+},
+{
+  "model": "products.product",
+  "pk": 11,
+  "fields": {
+    "name": "Apple iPhone Air Light Gold",
+    "slug": "apple-iphone-air-light-gold",
+    "description": "Apple iPhone Air — смартфон девятнадцатого поколения, разработанный компанией Apple Inc. Внутренняя память 256 Gb | Светлый золотой | Новинка Apple 2025 | Оригинальная техника Apple | Новое, запечатанное устройство | Официальная гарантия 12 месяцев | Модель: iPhone 17 Air | Диагональ: 6.9 | Фотокамера: 48 МП| Процессор: Apple A19 Pro",
+    "image": "products_images/apple-iphone-air-light-gold_n2siZfY.webp",
+    "price": "75300.00",
+    "discount": "10.00",
+    "quantity": 7,
+    "category": 1
+  }
+},
+{
+  "model": "products.product",
+  "pk": 12,
+  "fields": {
+    "name": "Apple iPhone Air Sky Blue",
+    "slug": "apple-iphone-air-sky-blue",
+    "description": "Apple iPhone Air — смартфон девятнадцатого поколения, разработанный компанией Apple Inc. Внутренняя память 256 Gb | Небесно-голубой | Новинка Apple 2025 | Оригинальная техника Apple | Новое, запечатанное устройство | Официальная гарантия 12 месяцев | Модель: iPhone 17 Air | Диагональ: 6.9 | Фотокамера: 48 МП| Процессор: Apple A19 Pro",
+    "image": "products_images/apple-iphone-air-sky-blue_Hw3V4ZD.webp",
+    "price": "76400.00",
+    "discount": "5.00",
+    "quantity": 7,
+    "category": 1
+  }
+},
+{
+  "model": "products.product",
+  "pk": 13,
+  "fields": {
+    "name": "Apple iPhone 17 Pro Silver",
+    "slug": "apple-iphone-17-pro-silver",
+    "description": "Apple iPhone 17 Pro Silver — смартфон с обновлённым дизайном, представленный в сентябре 2025 года. Особенность модели — прямоугольное «плато», на котором размещены основная камеры и вспышка. Модель: iPhone 17 Pro | Диагональ: 6.3 | Фотокамера: 48 МП | Процессор: Apple A19 Pro | Серебристый",
+    "image": "products_images/apple-iphone-17-pro-silver_F7B6kyg.webp",
+    "price": "106400.00",
+    "discount": "0.00",
+    "quantity": 7,
+    "category": 1
+  }
+},
+{
+  "model": "products.product",
+  "pk": 14,
+  "fields": {
+    "name": "Apple iPhone 17 Pro Deep Blue",
+    "slug": "apple-iphone-17-pro-deep-blue",
+    "description": "Apple iPhone 17 Pro Silver — смартфон с обновлённым дизайном, представленный в сентябре 2025 года. Особенность модели — прямоугольное «плато», на котором размещены основная камеры и вспышка. Модель: iPhone 17 Pro | Диагональ: 6.3 | Фотокамера: 48 МП | Процессор: Apple A19 Pro | Глубокий синий",
+    "image": "products_images/apple-iphone-17-pro-deep-blue_v1O95Sh.webp",
+    "price": "103500.00",
+    "discount": "5.00",
+    "quantity": 13,
+    "category": 1
+  }
+},
+{
+  "model": "products.product",
+  "pk": 15,
+  "fields": {
+    "name": "Apple iPhone 17 Pro Cosmic Orange",
+    "slug": "apple-iphone-17-pro-cosmic-orange",
+    "description": "Apple iPhone 17 Pro Silver — смартфон с обновлённым дизайном, представленный в сентябре 2025 года. Особенность модели — прямоугольное «плато», на котором размещены основная камеры и вспышка. Модель: iPhone 17 Pro | Диагональ: 6.3 | Фотокамера: 48 МП | Процессор: Apple A19 Pro | Космический оранжевый",
+    "image": "products_images/apple-iphone-17-pro-cosmic-orange_xp3sG5r.webp",
+    "price": "101100.00",
+    "discount": "5.00",
+    "quantity": 11,
+    "category": 1
+  }
+},
+{
+  "model": "products.product",
+  "pk": 16,
+  "fields": {
+    "name": "Apple iPhone 17 Pro Max Silver",
+    "slug": "apple-iphone-17-pro-max-silver",
+    "description": "Apple iPhone 17 Pro Silver — смартфон с обновлённым дизайном, представленный в сентябре 2025 года. Особенность модели — прямоугольное «плато», на котором размещены основная камеры и вспышка. -Модель: iPhone 17 Pro Max | -Диагональ: 6.9 | -Фотокамера: 48 МП | -Процессор: Apple A19 Pro | Серебристый",
+    "image": "products_images/apple-iphone-17-pro-max-silver_ahWMVOb.webp",
+    "price": "114500.00",
+    "discount": "10.00",
+    "quantity": 14,
+    "category": 1
+  }
+},
+{
+  "model": "products.product",
+  "pk": 17,
+  "fields": {
+    "name": "Apple iPhone 16e White",
+    "slug": "apple-iphone-16e-white",
+    "description": "Модель: iPhone 16E\n\nДиагональ: 6.1\n\nФотокамера: 48 МП\n\nПроцессор: Apple A18 Bionic",
+    "image": "products_images/apple-iphone-16e-white_gZZcwPj.webp",
+    "price": "46100.00",
+    "discount": "10.00",
+    "quantity": 16,
+    "category": 1
+  }
+},
+{
+  "model": "products.product",
+  "pk": 18,
+  "fields": {
+    "name": "Apple iPhone 16e Black",
+    "slug": "apple-iphone-16e-black",
+    "description": "Модель: iPhone 16E\n\nДиагональ: 6.1\n\nФотокамера: 48 МП\n\nПроцессор: Apple A18 Bionic",
+    "image": "products_images/apple-iphone-16e-black_wx9q5so.webp",
+    "price": "46100.00",
+    "discount": "20.00",
+    "quantity": 16,
+    "category": 1
+  }
+},
+{
+  "model": "products.product",
+  "pk": 19,
+  "fields": {
+    "name": "Apple iPhone 16 Teal",
+    "slug": "apple-iphone-16-teal",
+    "description": "Модель: iPhone 16\n\nДиагональ: 6.1\n\nФотокамера: 48 МП\n\nПроцессор: Apple A18 Bionic",
+    "image": "products_images/apple-iphone-16-teal.webp",
+    "price": "59100.00",
+    "discount": "0.00",
+    "quantity": 9,
+    "category": 1
+  }
+},
+{
+  "model": "products.product",
+  "pk": 20,
+  "fields": {
+    "name": "Apple iPhone 16 White",
+    "slug": "apple-iphone-16-white",
+    "description": "Модель: iPhone 16\n\nДиагональ: 6.1\n\nФотокамера: 48 МП\n\nПроцессор: Apple A18 Bionic",
+    "image": "products_images/apple-iphone-16-white.webp",
+    "price": "60200.00",
+    "discount": "12.00",
+    "quantity": 16,
+    "category": 1
+  }
+},
+{
+  "model": "products.product",
+  "pk": 21,
+  "fields": {
+    "name": "Apple iPhone 16 Black",
+    "slug": "apple-iphone-16-black",
+    "description": "Модель: iPhone 16\n\nДиагональ: 6.1\n\nФотокамера: 48 МП\n\nПроцессор: Apple A18 Bionic",
+    "image": "products_images/apple-iphone-16-black.webp",
+    "price": "59150.00",
+    "discount": "9.00",
+    "quantity": 15,
+    "category": 1
+  }
+},
+{
+  "model": "products.product",
+  "pk": 22,
+  "fields": {
+    "name": "Apple iPhone 16 Pink",
+    "slug": "apple-iphone-16-pink",
+    "description": "Модель: iPhone 16\n\nДиагональ: 6.1\n\nФотокамера: 48 МП\n\nПроцессор: Apple A18 Bionic",
+    "image": "products_images/apple-iphone-16-pink.webp",
+    "price": "59100.00",
+    "discount": "11.00",
+    "quantity": 9,
+    "category": 1
+  }
+},
+{
+  "model": "products.product",
+  "pk": 23,
+  "fields": {
+    "name": "Apple iPhone 16 Ultramarine",
+    "slug": "apple-iphone-16-ultramarine",
+    "description": "Модель: iPhone 16\n\nДиагональ: 6.1\n\nФотокамера: 48 МП\n\nПроцессор: Apple A18 Bionic",
+    "image": "products_images/apple-iphone-16-ultramarine.webp",
+    "price": "59100.00",
+    "discount": "0.00",
+    "quantity": 9,
+    "category": 1
+  }
+},
+{
+  "model": "products.product",
+  "pk": 24,
+  "fields": {
+    "name": "Apple iPhone 16 Plus Teal",
+    "slug": "apple-iphone-16-plus-teal",
+    "description": "Модель: iPhone 16 Plus\n\nДиагональ: 6.7\n\nФотокамера: 48 МП\n\nПроцессор: Apple A18 Bionic",
+    "image": "products_images/apple-iphone-16-plus-teal.webp",
+    "price": "64000.00",
+    "discount": "0.00",
+    "quantity": 16,
+    "category": 1
+  }
+},
+{
+  "model": "products.product",
+  "pk": 25,
+  "fields": {
+    "name": "Apple iPhone 16 Plus White",
+    "slug": "apple-iphone-16-plus-white",
+    "description": "Модель: iPhone 16 Plus\n\nДиагональ: 6.7\n\nФотокамера: 48 МП\n\nПроцессор: Apple A18 Bionic",
+    "image": "products_images/apple-iphone-16-plus-white.webp",
+    "price": "64400.00",
+    "discount": "0.00",
+    "quantity": 14,
+    "category": 1
+  }
+},
+{
+  "model": "products.product",
+  "pk": 26,
+  "fields": {
+    "name": "Apple iPhone 16 Pro Max White Titanium",
+    "slug": "apple-iphone-16-pro-max-white-titanium",
+    "description": "Модель: iPhone 16 Pro Max\n\nДиагональ: 6.9\n\nФотокамера: 48 МП\n\nПроцессор: Apple A18 Pro",
+    "image": "products_images/apple-iphone-16-pro-max-white-titanium.webp",
+    "price": "107000.00",
+    "discount": "17.00",
+    "quantity": 7,
+    "category": 1
+  }
+},
+{
+  "model": "products.product",
+  "pk": 27,
+  "fields": {
+    "name": "Apple iPhone 16 Pro Max Natural Titanium",
+    "slug": "apple-iphone-16-pro-max-natural-titanium",
+    "description": "Модель: iPhone 16 Pro Max\n\nДиагональ: 6.9\n\nФотокамера: 48 МП\n\nПроцессор: Apple A18 Pro",
+    "image": "products_images/apple-iphone-16-pro-max-natural-titanium.webp",
+    "price": "106400.00",
+    "discount": "0.00",
+    "quantity": 9,
+    "category": 1
+  }
+},
+{
+  "model": "products.product",
+  "pk": 28,
+  "fields": {
+    "name": "Apple iPhone 16 Pro Max Black Titanium",
+    "slug": "apple-iphone-16-pro-max-black-titanium",
+    "description": "Модель: iPhone 16 Pro Max\n\nДиагональ: 6.9\n\nФотокамера: 48 МП\n\nПроцессор: Apple A18 Pro",
+    "image": "products_images/apple-iphone-16-pro-max-black-titanium.webp",
+    "price": "106500.00",
+    "discount": "0.00",
+    "quantity": 5,
+    "category": 1
+  }
+},
+{
+  "model": "products.product",
+  "pk": 29,
+  "fields": {
+    "name": "Apple iPhone 15 Plus, Yellow",
+    "slug": "apple-iphone-15-plus-yellow",
+    "description": "Модель: iPhone 15 Plus\n\nДиагональ: 6.7\n\nФотокамера: 48 МП\n\nПроцессор: Apple A16 Bionic",
+    "image": "products_images/apple-iphone-15-plus-yellow.webp",
+    "price": "55500.00",
+    "discount": "5.00",
+    "quantity": 15,
+    "category": 1
+  }
+},
+{
+  "model": "products.product",
+  "pk": 30,
+  "fields": {
+    "name": "Apple iPhone 15 Plus, Green",
+    "slug": "apple-iphone-15-plus-green",
+    "description": "Модель: iPhone 15 Plus\n\nДиагональ: 6.7\n\nФотокамера: 48 МП\n\nПроцессор: Apple A16 Bionic",
+    "image": "products_images/apple-iphone-15-plus-green.webp",
+    "price": "55500.00",
+    "discount": "15.00",
+    "quantity": 6,
+    "category": 1
+  }
+},
+{
+  "model": "products.product",
+  "pk": 31,
+  "fields": {
+    "name": "Apple iPad Pro (M5, 2025) 11\" Silver",
+    "slug": "apple-ipad-pro-m5-2025-11-silver",
+    "description": "Модель: iPad Pro 11 M5\n\nГод релиза: 2025\n\nЧип: M5",
+    "image": "products_images/apple-ipad-pro-m5-2025-11-silver.webp",
+    "price": "95000.00",
+    "discount": "0.00",
+    "quantity": 9,
+    "category": 2
+  }
+},
+{
+  "model": "products.product",
+  "pk": 32,
+  "fields": {
+    "name": "Apple iPad Pro (M5, 2025) 11\" Space Black",
+    "slug": "apple-ipad-pro-m5-2025-11-space-black",
+    "description": "Модель: iPad Pro 11 M5\n\nГод релиза: 2025\n\nЧип: M5",
+    "image": "products_images/apple-ipad-pro-m5-2025-11-space-black.webp",
+    "price": "95000.00",
+    "discount": "9.00",
+    "quantity": 5,
+    "category": 2
+  }
+},
+{
+  "model": "products.product",
+  "pk": 33,
+  "fields": {
+    "name": "Apple iPad Pro (M5, 2025) 13\" Silver",
+    "slug": "apple-ipad-pro-m5-2025-13-silver",
+    "description": "Модель: iPad Pro 13 M5\n\nГод релиза: 2025\n\nЧип: M5",
+    "image": "products_images/apple-ipad-pro-m5-2025-13-silver.webp",
+    "price": "132000.00",
+    "discount": "0.00",
+    "quantity": 12,
+    "category": 2
+  }
+},
+{
+  "model": "products.product",
+  "pk": 34,
+  "fields": {
+    "name": "Apple iPad mini 6 Wi-Fi, Pink",
+    "slug": "apple-ipad-mini-6-wi-fi-pink",
+    "description": "Модель: iPad mini 6",
+    "image": "products_images/apple-ipad-mini-6-wi-fi-pink.webp",
+    "price": "43500.00",
+    "discount": "13.00",
+    "quantity": 15,
+    "category": 2
+  }
+},
+{
+  "model": "products.product",
+  "pk": 35,
+  "fields": {
+    "name": "Apple iPad mini 7 Wi-Fi, Starlight",
+    "slug": "apple-ipad-mini-7-wi-fi-starlight",
+    "description": "Модель: iPad mini 7",
+    "image": "products_images/apple-ipad-mini-7-wi-fi-starlight.webp",
+    "price": "44700.00",
+    "discount": "0.00",
+    "quantity": 17,
+    "category": 2
+  }
+},
+{
+  "model": "products.product",
+  "pk": 36,
+  "fields": {
+    "name": "Apple iPad mini 7 Wi-Fi, Space Gray",
+    "slug": "apple-ipad-mini-7-wi-fi-space-gray",
+    "description": "Модель: iPad mini 7",
+    "image": "products_images/apple-ipad-mini-7-wi-fi-space-gray.webp",
+    "price": "48700.00",
+    "discount": "7.00",
+    "quantity": 18,
+    "category": 2
+  }
+},
+{
+  "model": "products.product",
+  "pk": 37,
+  "fields": {
+    "name": "Apple iPad Air M3 2025 11\" Starlight",
+    "slug": "apple-ipad-air-m3-2025-11-starlight",
+    "description": "Модель: iPad Air 7 M3\n\nГод релиза: 2025\n\nЧип: M3",
+    "image": "products_images/apple-ipad-air-m3-2025-11-starlight.png",
+    "price": "50900.00",
+    "discount": "19.00",
+    "quantity": 9,
+    "category": 2
+  }
+},
+{
+  "model": "products.product",
+  "pk": 38,
+  "fields": {
+    "name": "Apple iPad Air M3 2025 13\" Purple",
+    "slug": "apple-ipad-air-m3-2025-13-purple",
+    "description": "Модель: iPad Air 7 M3\n\nГод релиза: 2025\n\nЧип: M3",
+    "image": "products_images/apple-ipad-air-m3-2025-13-purple.png",
+    "price": "66500.00",
+    "discount": "5.00",
+    "quantity": 6,
+    "category": 2
+  }
+},
+{
+  "model": "products.product",
+  "pk": 39,
+  "fields": {
+    "name": "Apple iPad Pro (M4, 2024) 13\" Space Black",
+    "slug": "apple-ipad-pro-m4-2024-13-space-black",
+    "description": "Модель: iPad Pro 13 M4\n\nГод релиза: 2024\n\nЧип: M4",
+    "image": "products_images/apple-ipad-pro-m4-2024-13-space-black.webp",
+    "price": "106900.00",
+    "discount": "0.00",
+    "quantity": 10,
+    "category": 2
+  }
+},
+{
+  "model": "products.product",
+  "pk": 40,
+  "fields": {
+    "name": "Apple iPad Pro (M4, 2024) 13\" Silver",
+    "slug": "apple-ipad-pro-m4-2024-13-silver",
+    "description": "Модель: iPad Pro 13 M4\n\nГод релиза: 2024\n\nЧип: M4",
+    "image": "products_images/apple-ipad-pro-m4-2024-13-silver.webp",
+    "price": "107000.00",
+    "discount": "0.00",
+    "quantity": 7,
+    "category": 2
+  }
+},
+{
+  "model": "products.product",
+  "pk": 41,
+  "fields": {
+    "name": "Apple iPad Pro (M4, 2024) 11\" Silver",
+    "slug": "apple-ipad-pro-m4-2024-11-silver",
+    "description": "Модель: iPad Pro 11 M4\n\nГод релиза: 2024\n\nЧип: M4",
+    "image": "products_images/apple-ipad-pro-m4-2024-11-silver.webp",
+    "price": "94500.00",
+    "discount": "0.00",
+    "quantity": 4,
+    "category": 2
+  }
+},
+{
+  "model": "products.product",
+  "pk": 42,
+  "fields": {
+    "name": "Apple iPad Air M3 2025 13\" Blue",
+    "slug": "apple-ipad-air-m3-2025-13-blue",
+    "description": "Модель: iPad Air 7 M3\n\nГод релиза: 2025\n\nЧип: M3",
+    "image": "products_images/apple-ipad-air-m3-2025-13-blue.webp",
+    "price": "66500.00",
+    "discount": "0.00",
+    "quantity": 6,
+    "category": 2
+  }
+},
+{
+  "model": "products.product",
+  "pk": 43,
+  "fields": {
+    "name": "Apple iPad 11 2025 Wi-Fi, Blue",
+    "slug": "apple-ipad-11-2025-wi-fi-blue",
+    "description": "Модель: iPad 11\n\nГод релиза: 2025",
+    "image": "products_images/apple-ipad-11-2025-wi-fi-blue.webp",
+    "price": "34900.00",
+    "discount": "0.00",
+    "quantity": 9,
+    "category": 2
+  }
+},
+{
+  "model": "products.product",
+  "pk": 44,
+  "fields": {
+    "name": "Apple iPad 11 2025 Wi-Fi, Pink",
+    "slug": "apple-ipad-11-2025-wi-fi-pink",
+    "description": "Модель: iPad 11\n\nГод релиза: 2025",
+    "image": "products_images/apple-ipad-11-2025-wi-fi-pink.webp",
+    "price": "34900.00",
+    "discount": "10.00",
+    "quantity": 9,
+    "category": 2
+  }
+},
+{
+  "model": "products.product",
+  "pk": 45,
+  "fields": {
+    "name": "Apple iPad (9th Gen) Wi-Fi Space Gray",
+    "slug": "apple-ipad-9th-gen-wi-fi-space-gray",
+    "description": "Модель: iPad 9\n\nГод релиза: 2021",
+    "image": "products_images/apple-ipad-9th-gen-wi-fi-space-gray.webp",
+    "price": "28800.00",
+    "discount": "8.00",
+    "quantity": 14,
+    "category": 2
+  }
+},
+{
+  "model": "products.product",
+  "pk": 46,
+  "fields": {
+    "name": "Apple MacBook Pro 14 M5 2025, Silver",
+    "slug": "apple-macbook-pro-14-m5-2025-silver",
+    "description": "Модель: MacBook Pro 14 M5 | Год релиза: 2025 | Чип: M5",
+    "image": "products_images/apple-macbook-pro-14-m5-2025-silver.webp",
+    "price": "159000.00",
+    "discount": "0.00",
+    "quantity": 9,
+    "category": 3
+  }
+},
+{
+  "model": "products.product",
+  "pk": 47,
+  "fields": {
+    "name": "Apple MacBook Pro 14 M5, Space Black",
+    "slug": "apple-macbook-pro-14-m5-space-black",
+    "description": "Модель: MacBook Pro 14 M5 | Год релиза: 2025 | Чип: M5",
+    "image": "products_images/apple-macbook-pro-14-m5-space-black.webp",
+    "price": "159000.00",
+    "discount": "5.00",
+    "quantity": 15,
+    "category": 3
+  }
+},
+{
+  "model": "products.product",
+  "pk": 48,
+  "fields": {
+    "name": "Apple MacBook Air 13 M4, Sky Blue",
+    "slug": "apple-macbook-air-13-m4-sky-blue",
+    "description": "Модель: MacBook Air 13 M4\n\nГод релиза: 2025\n\nЧип: M4",
+    "image": "products_images/apple-macbook-air-13-m4-sky-blue.webp",
+    "price": "86700.00",
+    "discount": "0.00",
+    "quantity": 7,
+    "category": 3
+  }
+},
+{
+  "model": "products.product",
+  "pk": 49,
+  "fields": {
+    "name": "Apple MacBook Air 15 M4, Sky Blue",
+    "slug": "apple-macbook-air-15-m4-sky-blue",
+    "description": "Модель: MacBook Air 15 M4\n\nГод релиза: 2025\n\nЧип: M4",
+    "image": "products_images/apple-macbook-air-15-m4-sky-blue.webp",
+    "price": "101700.00",
+    "discount": "0.00",
+    "quantity": 7,
+    "category": 3
+  }
+},
+{
+  "model": "products.product",
+  "pk": 50,
+  "fields": {
+    "name": "Apple MacBook Air 13 M4, Midnight",
+    "slug": "apple-macbook-air-13-m4-midnight",
+    "description": "Модель: MacBook Air 13 M4\n\nГод релиза: 2025\n\nЧип: M4",
+    "image": "products_images/apple-macbook-air-13-m4-midnight.webp",
+    "price": "86700.00",
+    "discount": "0.00",
+    "quantity": 0,
+    "category": 3
+  }
+},
+{
+  "model": "products.product",
+  "pk": 51,
+  "fields": {
+    "name": "Apple MacBook Air 13 M4, Silver",
+    "slug": "apple-macbook-air-13-m4-silver",
+    "description": "Модель: MacBook Air 13 M4\n\nГод релиза: 2025\n\nЧип: M4",
+    "image": "products_images/apple-macbook-air-13-m4-silver.webp",
+    "price": "86700.00",
+    "discount": "7.00",
+    "quantity": 8,
+    "category": 3
+  }
+},
+{
+  "model": "products.product",
+  "pk": 52,
+  "fields": {
+    "name": "Apple MacBook Pro 16 M4 Pro, Silver",
+    "slug": "apple-macbook-pro-16-m4-pro-silver",
+    "description": "Модель: MacBook Pro 16 M4\n\nГод релиза: 2024\n\nЧип: M4 Pro/M4 Max",
+    "image": "products_images/apple-macbook-pro-16-m4-pro-silver.webp",
+    "price": "294000.00",
+    "discount": "0.00",
+    "quantity": 9,
+    "category": 3
+  }
+},
+{
+  "model": "products.product",
+  "pk": 53,
+  "fields": {
+    "name": "Apple MacBook M4 Pro, Silver",
+    "slug": "apple-macbook-m4-pro-silver",
+    "description": "Модель: MacBook Pro 14 M4\n\nГод релиза: 2024\n\nЧип: M4/M4 Pro/M4 Max",
+    "image": "products_images/apple-macbook-m4-pro-silver.png",
+    "price": "157500.00",
+    "discount": "0.00",
+    "quantity": 10,
+    "category": 3
+  }
+},
+{
+  "model": "products.product",
+  "pk": 54,
+  "fields": {
+    "name": "Apple iMac 24\" Retina 4,5K (M4 2024), Green",
+    "slug": "apple-imac-24-retina-45k-m4-2024-green",
+    "description": "Модель: iMac 24 M4\n\nГод релиза: 2024",
+    "image": "products_images/apple-imac-24-retina-45k-m4-2024-green.webp",
+    "price": "153900.00",
+    "discount": "5.00",
+    "quantity": 15,
+    "category": 3
+  }
+},
+{
+  "model": "products.product",
+  "pk": 55,
+  "fields": {
+    "name": "Apple iMac 24\" Retina 4,5K (M4 2024), Silver",
+    "slug": "apple-imac-24-retina-45k-m4-2024-silver",
+    "description": "Модель: iMac 24 M4\n\nГод релиза: 2024",
+    "image": "products_images/apple-imac-24-retina-45k-m4-2024-silver.webp",
+    "price": "153900.00",
+    "discount": "9.00",
+    "quantity": 15,
+    "category": 3
+  }
+},
+{
+  "model": "products.product",
+  "pk": 56,
+  "fields": {
+    "name": "Apple iMac 24\" Retina 4,5K (M4 2024), Pink",
+    "slug": "apple-imac-24-retina-45k-m4-2024-pink",
+    "description": "Модель: iMac 24 M4\n\nГод релиза: 2024",
+    "image": "products_images/apple-imac-24-retina-45k-m4-2024-pink.webp",
+    "price": "153900.00",
+    "discount": "0.00",
+    "quantity": 9,
+    "category": 3
+  }
+},
+{
+  "model": "products.product",
+  "pk": 57,
+  "fields": {
+    "name": "Apple MacBook Air 13 M1, Space Gray",
+    "slug": "apple-macbook-air-13-m1-space-gray",
+    "description": "Модель: MacBook Air 13 M1\n\nГод релиза: 2020\n\nЧип: M1",
+    "image": "products_images/apple-macbook-air-13-m1-space-gray.webp",
+    "price": "57500.00",
+    "discount": "8.00",
+    "quantity": 7,
+    "category": 3
+  }
+},
+{
+  "model": "products.product",
+  "pk": 58,
+  "fields": {
+    "name": "Apple MacBook Air 13\" M2, Starlight",
+    "slug": "apple-macbook-air-13-m2-starlight",
+    "description": "Модель: MacBook Air 13 M2\n\nГод релиза: 2022",
+    "image": "products_images/apple-macbook-air-13-m2-starlight.webp",
+    "price": "69400.00",
+    "discount": "4.00",
+    "quantity": 9,
+    "category": 3
+  }
+},
+{
+  "model": "products.product",
+  "pk": 59,
+  "fields": {
+    "name": "Apple MacBook Air 13\" M2, Space Gray",
+    "slug": "apple-macbook-air-13-m2-space-gray",
+    "description": "Модель: MacBook Air 13 M2\n\nГод релиза: 2022",
+    "image": "products_images/apple-macbook-air-13-m2-space-gray.webp",
+    "price": "69400.00",
+    "discount": "0.00",
+    "quantity": 8,
+    "category": 3
+  }
+},
+{
+  "model": "products.product",
+  "pk": 60,
+  "fields": {
+    "name": "Apple MacBook Air 15\" M2, Midnight",
+    "slug": "apple-macbook-air-15-m2-midnight",
+    "description": "Модель: MacBook Air 15 M2\n\nГод релиза: 2022",
+    "image": "products_images/apple-macbook-air-15-m2-midnight.webp",
+    "price": "102000.00",
+    "discount": "0.00",
+    "quantity": 12,
+    "category": 3
+  }
+},
+{
+  "model": "products.product",
+  "pk": 61,
+  "fields": {
+    "name": "Apple MacBook Air 15\" M2, Space Gray",
+    "slug": "apple-macbook-air-15-m2-space-gray",
+    "description": "Модель: MacBook Air 15 M2\n\nГод релиза: 2022",
+    "image": "products_images/apple-macbook-air-15-m2-space-gray.webp",
+    "price": "102000.00",
+    "discount": "0.00",
+    "quantity": 10,
+    "category": 3
+  }
+},
+{
+  "model": "products.product",
+  "pk": 63,
+  "fields": {
+    "name": "Apple MacBook Pro 16 M1 Pro, Space Gray",
+    "slug": "apple-macbook-pro-16-m1-pro-space-gray",
+    "description": "Модель: MacBook Pro 16 M1\n\nГод релиза: 2021\n\nЧип: M1 Pro",
+    "image": "products_images/apple-macbook-pro-16-m1-pro-space-gray.webp",
+    "price": "133100.00",
+    "discount": "0.00",
+    "quantity": 13,
+    "category": 3
+  }
+},
+{
+  "model": "products.product",
+  "pk": 64,
+  "fields": {
+    "name": "Mac Mini 2024 M4",
+    "slug": "mac-mini-2024-m4",
+    "description": "Модель: Mac Mini M4",
+    "image": "products_images/mac-mini-2024-m4.webp",
+    "price": "55000.00",
+    "discount": "0.00",
+    "quantity": 5,
+    "category": 3
+  }
+},
+{
+  "model": "products.product",
+  "pk": 65,
+  "fields": {
+    "name": "Apple Watch 11 (2025) Jet Black Aluminium Case + Black Sport Band",
+    "slug": "apple-watch-11-2025-jet-black-aluminium-case-black-sport-band",
+    "description": "Модель: Watch 11\n\nМатериал корпуса: Алюминий\n\nМатериал ремешка: Силикон\n\nТип ремешка: Спортивный ремешок\n\nЦвет корпуса: Черный",
+    "image": "products_images/apple-watch-11-2025-jet-black-aluminium-case-black-sport-band.webp",
+    "price": "44500.00",
+    "discount": "0.00",
+    "quantity": 4,
+    "category": 4
+  }
+},
+{
+  "model": "products.product",
+  "pk": 66,
+  "fields": {
+    "name": "Apple Watch 11 (2025) Rose Gold Aluminium Case + Black Sport Band",
+    "slug": "apple-watch-11-2025-rose-gold-aluminium-case-black-sport-band",
+    "description": "Модель: Watch 11\n\nМатериал корпуса: Алюминий\n\nМатериал ремешка: Силикон\n\nТип ремешка: Спортивный ремешок\n\nЦвет корпуса: Розовое золото",
+    "image": "products_images/apple-watch-11-2025-rose-gold-aluminium-case-black-sport-band.webp",
+    "price": "44500.00",
+    "discount": "10.00",
+    "quantity": 5,
+    "category": 4
+  }
+},
+{
+  "model": "products.product",
+  "pk": 67,
+  "fields": {
+    "name": "Apple Watch Ultra 3 (2025) 49mm Natural Titanium + Light Blue Alpine loop",
+    "slug": "apple-watch-ultra-3-2025-49mm-natural-titanium-light-blue-alpine-loop",
+    "description": "Модель: Watch Ultra 3\n\nМатериал корпуса: Титан\n\nМатериал ремешка: Полиэстер\n\nТип ремешка: Спортивный ремешок\n\nЦвет корпуса: Натуральный титан",
+    "image": "products_images/apple-watch-ultra-3-2025-49mm-natural-titanium-light-blue-alpine-loop.webp",
+    "price": "75500.00",
+    "discount": "0.00",
+    "quantity": 7,
+    "category": 4
+  }
+},
+{
+  "model": "products.product",
+  "pk": 68,
+  "fields": {
+    "name": "Apple Watch Ultra 3 (2025) 49mm Natural Titanium + Milanese Loop",
+    "slug": "apple-watch-ultra-3-2025-49mm-natural-titanium-milanese-loop",
+    "description": "Модель: Watch Ultra 3\n\nМатериал корпуса: Титан\n\nМатериал ремешка: Нержавеющая сталь\n\nТип ремешка: Плетение Миланская петля\n\nЦвет корпуса: Натуральный титан",
+    "image": "products_images/apple-watch-ultra-3-2025-49mm-natural-titanium-milanese-loop.webp",
+    "price": "103000.00",
+    "discount": "0.00",
+    "quantity": 13,
+    "category": 4
+  }
+},
+{
+  "model": "products.product",
+  "pk": 69,
+  "fields": {
+    "name": "Apple Watch Ultra 3 (2025) 49mm Black Titanium + Black Alpine loop",
+    "slug": "apple-watch-ultra-3-2025-49mm-black-titanium-black-alpine-loop",
+    "description": "Модель: Watch Ultra 3\n\nМатериал корпуса: Титан\n\nМатериал ремешка: Полиэстер\n\nТип ремешка: Спортивный ремешок\n\nЦвет корпуса: Черный титан",
+    "image": "products_images/apple-watch-ultra-3-2025-49mm-black-titanium-black-alpine-loop.webp",
+    "price": "76000.00",
+    "discount": "6.00",
+    "quantity": 7,
+    "category": 4
+  }
+},
+{
+  "model": "products.product",
+  "pk": 70,
+  "fields": {
+    "name": "Apple Watch Ultra 3 (2025) 49mm Black Titanium + Black Ocean Band",
+    "slug": "apple-watch-ultra-3-2025-49mm-black-titanium-black-ocean-band",
+    "description": "Модель: Watch Ultra 3\n\nМатериал корпуса: Титан\n\nМатериал ремешка: Силикон\n\nТип ремешка: Спортивный ремешок\n\nЦвет корпуса: Черный титан",
+    "image": "products_images/apple-watch-ultra-3-2025-49mm-black-titanium-black-ocean-band.webp",
+    "price": "81000.00",
+    "discount": "0.00",
+    "quantity": 8,
+    "category": 4
+  }
+},
+{
+  "model": "products.product",
+  "pk": 71,
+  "fields": {
+    "name": "Apple Watch Series 10 Silver Aliminium Case Denim Sport Band (42mm | 46 mm)",
+    "slug": "apple-watch-series-10-silver-aliminium-case-denim-sport-band-42mm-46-mm",
+    "description": "Модель: Watch 10\n\nМатериал корпуса: Алюминий\n\nМатериал ремешка: Силикон\n\nТип ремешка: Спортивный ремешок\n\nЦвет корпуса: Серебро",
+    "image": "products_images/apple-watch-series-10-silver-aliminium-case-denim-sport-band-42mm-46-mm.png",
+    "price": "33700.00",
+    "discount": "0.00",
+    "quantity": 3,
+    "category": 4
+  }
+},
+{
+  "model": "products.product",
+  "pk": 72,
+  "fields": {
+    "name": "Apple Watch Series 10 Rose Gold Aliminium Case Light Blush Sport Band (42mm | 46 mm)",
+    "slug": "apple-watch-series-10-rose-gold-aliminium-case-light-blush-sport-band-42mm-46-mm",
+    "description": "Модель: Watch 10\n\nМатериал корпуса: Алюминий\n\nМатериал ремешка: Силикон\n\nТип ремешка: Спортивный ремешок\n\nЦвет корпуса: Розовое золото",
+    "image": "products_images/apple-watch-series-10-rose-gold-aliminium-case-light-blush-sport-band-4_H49uTre.webp",
+    "price": "32700.00",
+    "discount": "6.00",
+    "quantity": 7,
+    "category": 4
+  }
+},
+{
+  "model": "products.product",
+  "pk": 73,
+  "fields": {
+    "name": "Apple Watch Series 10 Natural Titanium Milanese Loop (42|46 mm)",
+    "slug": "apple-watch-series-10-natural-titanium-milanese-loop-4246-mm",
+    "description": "Модель: Watch 10\n\nМатериал корпуса: Титан\n\nМатериал ремешка: Нержавеющая сталь\n\nТип ремешка: Плетение Миланская петля\n\nЦвет корпуса: Натуральный титан",
+    "image": "products_images/apple-watch-series-10-natural-titanium-milanese-loop-4246-mm.webp",
+    "price": "86800.00",
+    "discount": "0.00",
+    "quantity": 8,
+    "category": 4
+  }
+},
+{
+  "model": "products.product",
+  "pk": 74,
+  "fields": {
+    "name": "Apple Watch Series 10 Slate Natural Titanium Milanese Loop (42|46 mm)",
+    "slug": "apple-watch-series-10-slate-natural-titanium-milanese-loop-4246-mm",
+    "description": "Модель: Watch 10\n\nМатериал корпуса: Титан\n\nМатериал ремешка: Нержавеющая сталь\n\nТип ремешка: Плетение Миланская петля\n\nЦвет корпуса: Титановый серый",
+    "image": "products_images/apple-watch-series-10-slate-natural-titanium-milanese-loop-4246-mm.webp",
+    "price": "78900.00",
+    "discount": "0.00",
+    "quantity": 9,
+    "category": 4
+  }
+},
+{
+  "model": "products.product",
+  "pk": 75,
+  "fields": {
+    "name": "Apple Watch SE Sport Band 2024 (Midnight | Silver | Starlight)",
+    "slug": "apple-watch-se-sport-band-2024-midnight-silver-starlight",
+    "description": "Модель: Watch SE 2\n\nМатериал корпуса: Алюминий, Стекло Ion-X\n\nМатериал ремешка: Фторэластомер\n\nГод релиза: 2024",
+    "image": "products_images/apple-watch-se-sport-band-2024-midnight-silver-starlight.webp",
+    "price": "19300.00",
+    "discount": "7.00",
+    "quantity": 15,
+    "category": 4
+  }
+},
+{
+  "model": "products.product",
+  "pk": 76,
+  "fields": {
+    "name": "Apple Watch SE Sport Loop 2024 (Midnight | Silver | Starlight)",
+    "slug": "apple-watch-se-sport-loop-2024-midnight-silver-starlight",
+    "description": "Модель: Watch SE 2\n\nМатериал корпуса: Алюминий, Стекло Ion-X\n\nМатериал ремешка: Ткань\n\nГод релиза: 2024",
+    "image": "products_images/apple-watch-se-sport-loop-2024-midnight-silver-starlight.webp",
+    "price": "18700.00",
+    "discount": "0.00",
+    "quantity": 7,
+    "category": 4
+  }
+},
+{
+  "model": "products.product",
+  "pk": 77,
+  "fields": {
+    "name": "Apple Watch Series 8 45mm Product Red Sport Band",
+    "slug": "apple-watch-series-8-45mm-product-red-sport-band",
+    "description": "Модель: Watch 8\n\nМатериал корпуса: Алюминий\n\nМатериал ремешка: Силикон\n\nЦвет корпуса: Красный",
+    "image": "products_images/apple-watch-series-8-45mm-product-red-sport-band.webp",
+    "price": "24300.00",
+    "discount": "0.00",
+    "quantity": 4,
+    "category": 4
+  }
+},
+{
+  "model": "products.product",
+  "pk": 78,
+  "fields": {
+    "name": "Apple Watch 9 Stainless Steel Graphite Milanese Loop 41mm Graphite",
+    "slug": "apple-watch-9-stainless-steel-graphite-milanese-loop-41mm-graphite",
+    "description": "Модель: Watch 9\n\nМатериал корпуса: Нержавеющая сталь\n\nМатериал ремешка: Нержавеющая сталь\n\nТип ремешка: Плетение Миланская петля\n\nЦвет корпуса: Графит",
+    "image": "products_images/apple-watch-9-stainless-steel-graphite-milanese-loop-41mm-graphite.png",
+    "price": "65300.00",
+    "discount": "0.00",
+    "quantity": 5,
+    "category": 4
+  }
+},
+{
+  "model": "products.product",
+  "pk": 79,
+  "fields": {
+    "name": "Apple Watch Ultra 2 2023 Yellow/Beige Trail Loop",
+    "slug": "apple-watch-ultra-2-2023-yellowbeige-trail-loop",
+    "description": "Модель: Watch Ultra 2\n\nМатериал корпуса: Титан\n\nМатериал ремешка: Нейлон\n\nЦвет корпуса: Натуральный титан\n\nГод релиза: 2023",
+    "image": "products_images/apple-watch-ultra-2-2023-yellowbeige-trail-loop.png",
+    "price": "65200.00",
+    "discount": "0.00",
+    "quantity": 4,
+    "category": 4
+  }
+},
+{
+  "model": "products.product",
+  "pk": 80,
+  "fields": {
+    "name": "Apple Watch Ultra 2 2024 49mm (Black Titanium) Dark Green Alpine loop",
+    "slug": "apple-watch-ultra-2-2024-49mm-black-titanium-dark-green-alpine-loop",
+    "description": "Модель: Watch Ultra 2\n\nМатериал корпуса: Титан\n\nМатериал ремешка: Ткань\n\nЦвет корпуса: Черный титан\n\nГод релиза: 2024",
+    "image": "products_images/apple-watch-ultra-2-2024-49mm-black-titanium-dark-green-alpine-loop.png",
+    "price": "68900.00",
+    "discount": "0.00",
+    "quantity": 9,
+    "category": 4
+  }
+},
+{
+  "model": "products.product",
+  "pk": 81,
+  "fields": {
+    "name": "Apple Watch Ultra 2 2024 49mm (Black Titanium) Black Ocean band",
+    "slug": "apple-watch-ultra-2-2024-49mm-black-titanium-black-ocean-band",
+    "description": "Модель: Watch Ultra 2\n\nМатериал корпуса: Титан\n\nМатериал ремешка: Фторэластомера\n\nЦвет корпуса: Черный титан\n\nГод релиза: 2024",
+    "image": "products_images/apple-watch-ultra-2-2024-49mm-black-titanium-black-ocean-band.png",
+    "price": "68900.00",
+    "discount": "0.00",
+    "quantity": 9,
+    "category": 4
+  }
+},
+{
+  "model": "products.product",
+  "pk": 82,
+  "fields": {
+    "name": "Apple Watch Ultra 2 2024 49mm (Black Titanium) Milanese Loop",
+    "slug": "apple-watch-ultra-2-2024-49mm-black-titanium-milanese-loop",
+    "description": "Модель: Watch Ultra 2\n\nМатериал корпуса: Титан\n\nМатериал ремешка: Титан\n\nЦвет корпуса: Черный титан\n\nГод релиза: 2024",
+    "image": "products_images/apple-watch-ultra-2-2024-49mm-black-titanium-milanese-loop.png",
+    "price": "80600.00",
+    "discount": "0.00",
+    "quantity": 10,
+    "category": 4
+  }
+},
+{
+  "model": "products.product",
+  "pk": 83,
+  "fields": {
+    "name": "Apple AirPods Max, Pink",
+    "slug": "apple-airpods-max-pink",
+    "description": "Тип аксессуара: Наушники\n\nМодель: AirPods Max\n\nГод релиза: 2020\n\nШумоподавление: Да\n\nТип соединения: Беспроводные Bluetooth\n\nРазъем: Lightning",
+    "image": "products_images/apple-airpods-max-pink.webp",
+    "price": "49000.00",
+    "discount": "0.00",
+    "quantity": 9,
+    "category": 5
+  }
+},
+{
+  "model": "products.product",
+  "pk": 84,
+  "fields": {
+    "name": "Apple AirPods Max 2024, Orange",
+    "slug": "apple-airpods-max-2024-orange",
+    "description": "Тип аксессуара: Наушники\n\nМодель: AirPods Max\n\nГод релиза: 2020\n\nШумоподавление: Да\n\nТип соединения: Беспроводные Bluetooth\n\nРазъем: Lightning",
+    "image": "products_images/apple-airpods-max-2024-orange.webp",
+    "price": "48600.00",
+    "discount": "0.00",
+    "quantity": 4,
+    "category": 5
+  }
+},
+{
+  "model": "products.product",
+  "pk": 85,
+  "fields": {
+    "name": "Apple AirPods Max 2024, Purple",
+    "slug": "apple-airpods-max-2024-purple",
+    "description": "Тип аксессуара: Наушники\n\nМодель: AirPods Max\n\nГод релиза: 2020\n\nШумоподавление: Да\n\nТип соединения: Беспроводные Bluetooth\n\nРазъем: Lightning",
+    "image": "products_images/apple-airpods-max-2024-purple.webp",
+    "price": "46800.00",
+    "discount": "0.00",
+    "quantity": 8,
+    "category": 5
+  }
+},
+{
+  "model": "products.product",
+  "pk": 86,
+  "fields": {
+    "name": "Apple AirPods Max 2024, Midnight",
+    "slug": "apple-airpods-max-2024-midnight",
+    "description": "Тип аксессуара: Наушники\n\nМодель: AirPods Max\n\nГод релиза: 2020\n\nШумоподавление: Да\n\nТип соединения: Беспроводные Bluetooth\n\nРазъем: Lightning",
+    "image": "products_images/apple-airpods-max-2024-midnight.webp",
+    "price": "50700.00",
+    "discount": "0.00",
+    "quantity": 7,
+    "category": 5
+  }
+},
+{
+  "model": "products.product",
+  "pk": 87,
+  "fields": {
+    "name": "Apple AirPods Max 2024, Blue",
+    "slug": "apple-airpods-max-2024-blue",
+    "description": "Тип аксессуара: Наушники\n\nМодель: AirPods Max\n\nГод релиза: 2020\n\nШумоподавление: Да\n\nТип соединения: Беспроводные Bluetooth\n\nРазъем: Lightning",
+    "image": "products_images/apple-airpods-max-2024-blue.webp",
+    "price": "48600.00",
+    "discount": "0.00",
+    "quantity": 8,
+    "category": 5
+  }
+},
+{
+  "model": "products.product",
+  "pk": 88,
+  "fields": {
+    "name": "Apple AirPods Max 2024, Starlight",
+    "slug": "apple-airpods-max-2024-starlight",
+    "description": "Тип аксессуара: Наушники\n\nМодель: AirPods Max\n\nГод релиза: 2020\n\nШумоподавление: Да\n\nТип соединения: Беспроводные Bluetooth\n\nРазъем: Lightning",
+    "image": "products_images/apple-airpods-max-2024-starlight.webp",
+    "price": "50700.00",
+    "discount": "0.00",
+    "quantity": 7,
+    "category": 5
+  }
+},
+{
+  "model": "products.product",
+  "pk": 89,
+  "fields": {
+    "name": "Apple AirPods 4 with Active Noise Cancellation",
+    "slug": "apple-airpods-4-with-active-noise-cancellation",
+    "description": "Тип аксессуара: Наушники\n\nМодель: AirPods 4 ANC\n\nГод релиза: 2024\n\nШумоподавление: Да\n\nТип соединения: Беспроводные Bluetooth\n\nРазъем: USB Type-C",
+    "image": "products_images/apple-airpods-4-with-active-noise-cancellation.webp",
+    "price": "18200.00",
+    "discount": "0.00",
+    "quantity": 8,
+    "category": 5
+  }
+},
+{
+  "model": "products.product",
+  "pk": 90,
+  "fields": {
+    "name": "Apple AirPods Pro 3",
+    "slug": "apple-airpods-pro-3",
+    "description": "Тип аксессуара: Наушники\n\nМодель: AirPods Pro 3\n\nГод релиза: 2025\n\nШумоподавление: Да\n\nТип соединения: Беспроводные Bluetooth\n\nРазъем: USB Type-C",
+    "image": "products_images/apple-airpods-pro-3.webp",
+    "price": "24100.00",
+    "discount": "0.00",
+    "quantity": 7,
+    "category": 5
+  }
+},
+{
+  "model": "products.product",
+  "pk": 91,
+  "fields": {
+    "name": "Apple AirPods Pro 2 USB-C",
+    "slug": "apple-airpods-pro-2-usb-c",
+    "description": "Тип аксессуара: Наушники\n\nМодель: AirPods Pro 2\n\nГод релиза: 2023\n\nШумоподавление: Да\n\nТип соединения: Беспроводные Bluetooth\n\nРазъем: USB Type-C",
+    "image": "products_images/apple-airpods-pro-2-usb-c.webp",
+    "price": "19500.00",
+    "discount": "0.00",
+    "quantity": 9,
+    "category": 5
+  }
+}
+]
