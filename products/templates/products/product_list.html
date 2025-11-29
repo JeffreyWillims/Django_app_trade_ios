@@ -1,14 +1,34 @@
 {% extends "base.html" %}
-{% load static products_tags %} {# Загружаем и статику, и наши теги одной строкой #}
+{% load static products_tags carts_tags %}
 
 {% block css %}
-    {# Подключаем наш кастомный CSS для каталога #}
     <link rel="stylesheet" href="{% static 'css/ios_catalog.css' %}">
 {% endblock %}
 
 
 {% block content %}
 <div class="container mt-5">
+    <!-- ==================================================================== -->
+    <!-- НАЧАЛО НОВОГО БЛОКА: Плавающая кнопка корзины                        -->
+    <!-- ==================================================================== -->
+    <div class="row">
+        <div class="col-12">
+            <div class="position-fixed z-3" style="top: 8rem; right: 2rem;">
+
+                <button type="button" class="btn btn-dark btn-secondary d-flex align-items-center p-2 rounded-circle shadow-lg position-relative" data-bs-toggle="modal" data-bs-target="#cartModal" title="Открыть корзину">
+                    <img class="mx-1" src="{% static 'icons/basket2-fill.svg' %}" alt="Корзина" width="24" height="24">
+                    {% cart_counter %}
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================================================================== -->
+    <!-- КОНЕЦ НОВОГО БЛОКА                                                     -->
+    <!-- ==================================================================== -->
+
+
+
     <div class="row">
 
         <!-- ==================================================================== -->
@@ -22,9 +42,10 @@
                     <h5 class="list-group-item list-group-item-action active" aria-current="true">
                         Категории
                     </h5>
-                    <a href="{% url 'products:index' %}?{% change_params request page=None category=None %}" class="list-group-item list-group-item-action">Все товары</a>
+                    <a href="{% url 'products:index' %}?{% change_params request page=None q=None %}" class="list-group-item list-group-item-action">Все товары</a>
                     {% for category in categories %}
-                        <a href="{% url 'products:category' category.slug %}?{% change_params request page=None %}" class="list-group-item list-group-item-action">{{ category.name }}</a>
+                        <!-- Ссылка на категорию, которая СОХРАНЯЕТ фильтры, но СБРАСЫВАЕТ поиск -->
+                        <a href="{% url 'products:category' category.slug %}?{% change_params request page=None q=None %}" class="list-group-item list-group-item-action">{{ category.name }}</a>
                     {% endfor %}
                 </div>
 
@@ -35,6 +56,11 @@
                     </h5>
                     <div class="list-group-item">
                         <form action="" method="get">
+
+                            {% if request.GET.q %}
+                                <input type="hidden" name="q" value="{{ request.GET.q }}">
+                            {% endif %}
+
                             <div class="form-check mb-3">
                                 <input class="form-check-input" type="checkbox" name="on_sale" id="onSaleCheck" {% if request.GET.on_sale == 'on' %}checked{% endif %}>
                                 <label class="form-check-label" for="onSaleCheck">Товары по акции</label>
@@ -65,15 +91,20 @@
         <!-- Правая колонка: Товары и Пагинация                                   -->
         <!-- ==================================================================== -->
         <div class="col-lg-9">
-            {% if request.GET.q %}
-                <h1 class="mb-4">Результаты по запросу: "{{ request.GET.q }}"</h1>
-            {% else %}
-                <h1 class="mb-4">Каталог товаров</h1>
-            {% endif %}
+            <div class="catalog-header">
+                {% if request.GET.q %}
+                    <p class="text-muted mb-1">Результаты по запросу:</p>
+                    <h1 class="mb-0">"{{ request.GET.q }}"</h1>
+                {% else %}
+                    <h1 class="mb-0">Каталог товаров</h1>
+                {% endif %}
+            </div>
+
             <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
                 {% for product in products %}
+
                     <!-- Карта товара -->
-                    <div class="col">
+                    <div class="col fade-in-on-load">
                         <div class="card h-100 custom-shadow product-card">
                             <div class="product-card-img-container">
                                 <a href="{% url 'products:product' product.slug %}">
@@ -101,7 +132,7 @@
                                                 <span class="fw-bold">{{ product.price }} ₽</span>
                                             {% endif %}
                                         </div>
-                                        <a href="#" class="btn btn-outline-primary add-to-cart-btn" title="Добавить в корзину">
+                                        <a href="{% url 'carts:cart_add' product_slug=product.slug %}" class="btn btn-outline-primary add-to-cart-btn" title="Добавить в корзину">
                                             <img src="{% static 'icons/cart-plus.svg' %}" alt="В корзину">
                                         </a>
                                     </div>

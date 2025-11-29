@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Авторизация{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6 col-lg-5">
+            <div class="card shadow-lg border-0" style="border-radius: var(--ios-border-radius);">
+                <div class="card-header text-center bg-dark text-white p-3">
+                    <h3 class="mb-0">Вход в аккаунт</h3>
+                </div>
+                <div class="card-body p-4">
+
+                    {# Блок для отображения сообщений (например, "Неверный пароль") #}
+                    {% if form.errors %}
+                        <div class="alert alert-danger" role="alert">
+                            Неверное имя пользователя или пароль.
+                        </div>
+                    {% endif %}
+
+                    <form action="{% url 'users:login' %}" method="post" novalidate>
+                        {% csrf_token %}
+
+                        <!-- Скрытое поле для редиректа после входа -->
+                        {% if request.GET.next %}
+                            <input type="hidden" name="next" value="{{ request.GET.next }}">
+                        {% endif %}
+
+                        <!-- Рендерим поля формы, Django добавит классы сам -->
+                        <div class="mb-3">
+                            <label for="{{ form.username.id_for_label }}" class="form-label">Имя пользователя</label>
+                            {{ form.username }}
+                        </div>
+                        <div class="mb-3">
+                            <label for="{{ form.password.id_for_label }}" class="form-label">Пароль</label>
+                            {{ form.password }}
+                        </div>
+
+                        <div class="d-grid"> {# Растягиваем кнопку #}
+                            <button type="submit" class="btn btn-primary btn-lg mt-2">Войти</button>
+                        </div>
+                    </form>
+
+                    <div class="text-center mt-3">
+                        <small class="text-muted">Нет аккаунта? <a href="{% url 'users:registration' %}">Зарегистрируйтесь</a></small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

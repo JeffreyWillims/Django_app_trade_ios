@@ -1,205 +1,152 @@
-{% load static %}
+{% load static carts_tags %}
 
 <!DOCTYPE html>
 <html lang="ru">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href='{% static "css/bootstrap/bootstrap.min.css" %}'>
-    <link rel="stylesheet" href='{% static "css/my_css.css" %}'>
-    {% block css %}
 
-    {% endblock %}
+    <!-- Стили -->
+    <link rel="stylesheet" href="{% static 'css/bootstrap/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    {% block css %}{% endblock %}
 
-    <link rel="apple-touch-icon" sizes="180x180" href='{% static "favicon/apple-touch-icon.png" %}'>
-    <link rel="icon" type="image/png" sizes="32x32" href='{% static "favicon/favicon-32x32.png" %}'>
-    <link rel="icon" type="image/png" sizes="16x16" href='{% static "favicon/favicon-16x16.png" %}'>
-    <link rel="manifest" href='{% static "favicon/site.webmanifest" %}'>
-    <title>{{ title }}</title>
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'favicon/apple-touch-icon.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'favicon/favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'favicon/favicon-16x16.png' %}">
+    <link rel="manifest" href="{% static 'favicon/site.webmanifest' %}">
+
+    <title>{% block title %}iOStrade{% endblock %}</title>
 </head>
+<body class="d-flex flex-column h-100">
 
-<body>
+    <!-- ======================================== -->
+    <!-- ШАПКА (HEADER)                         -->
+    <!-- ======================================== -->
     <header>
         <nav class="navbar navbar-expand-lg bg-dark" data-bs-theme="dark">
             <div class="container">
-                <a class="navbar-brand" href='{% url "pages:index" %}'>Home</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="Toggle navigation">
+                <a class="navbar-brand" href="{% url 'pages:index' %}">iOStrade</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+                    <!-- Левая часть меню -->
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li class="nav-item dropdown ">
-                            <a class="nav-link dropdown-toggle text-white" href="#" role="button"
-                                data-bs-toggle="dropdown" aria-expanded="false">
-                                Информация
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item  text-white" href="#">Доставка и оплата</a></li>
-                                <li><a class="dropdown-item  text-white" href="#">Контактная информация</a></li>
-                                <li><a class="dropdown-item  text-white" href="{% url 'pages:about' %}">Про нас</a></li>
-                            </ul>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link  text-white" href="carts/cart.html">Корзина</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link  text-white" href="users/login.html">Войти</a>
-                        </li>
-                        <li class="nav-item dropdown ">
-                            <a class="nav-link dropdown-toggle text-white" href="#" role="button"
-                                data-bs-toggle="dropdown" aria-expanded="false">
-                                Мой профиль
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item  text-white" href="carts/cart.html">Корзина</a></li>
-                                <li><a class="dropdown-item  text-white" href="users/profile.html">Личный кабинет</a>
-                                </li>
-                                <li><a class="dropdown-item  text-white" href='{% url "admin:index" %}'>Админ панель</a></li>
-                                <li>
-                                    <hr class="dropdown-divider">
-                                </li>
-                                <li><a class="dropdown-item  text-white" href="#">Выйти</a></li>
-                            </ul>
-                        </li>
+                        <li class="nav-item"><a class="nav-link text-white" href="{% url 'products:index' %}">Каталог</a></li>
+                        <li class="nav-item"><a class="nav-link text-white" href="{% url 'pages:about' %}">О нас</a></li>
+                        <li class="nav-item"><a class="nav-link text-white" href="#">Доставка и оплата</a></li>
                     </ul>
-                    <form class="d-flex" role="search" action="{% url 'products:index' %}" method="get">
-                        <input class="form-control me-2" type="search" name="q" value="{{ request.Get.q }}" placeholder="Поиск по товарам" aria-label="Search">
-                        <button class="btn btn-outline-success text-white" type="submit">Поиск</button>
-                    </form>
+
+                    <!-- Правая часть меню: Поиск, Корзина, Профиль -->
+                    <div class="d-flex align-items-center">
+
+                        <!-- Форма поиска -->
+                        <form class="d-flex me-3" role="search" action="{% url 'products:index' %}" method="get">
+                            <input class="form-control me-2" type="search" name="q" value="{{ request.GET.q }}" placeholder="Поиск..." aria-label="Search">
+                            <button class="btn btn-outline-light" type="submit">Найти</button>
+                        </form>
+
+                        <!-- Список иконок и меню пользователя -->
+
+                        <ul class="navbar-nav">
+
+                            <!-- Иконка корзины -->
+
+                            <li class="nav-item">
+                                <button type="button" class="btn btn-dark nav-link text-white position-relative" data-bs-toggle="modal" data-bs-target="#cartModal">
+                                    <img src="{% static 'icons/basket2-fill.svg' %}" alt="Корзина" width="20" height="20">
+                                    {% cart_counter %}
+                                </button>
+                            </li>
+
+                            <!-- Меню пользователя (с логикой) -->
+                            {% if user.is_authenticated %}
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        Профиль
+                                    </a>
+                                    <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end">
+                                        <li><a class="dropdown-item" href="{% url 'users:profile' %}">Личный кабинет</a></li>
+                                        {% if user.is_staff %}
+                                            <li><a class="dropdown-item" href="{% url 'admin:index' %}">Админ панель</a></li>
+                                        {% endif %}
+                                        <li><hr class="dropdown-divider"></li>
+                                        <li><a class="dropdown-item" href="{% url 'users:logout' %}">Выйти</a></li>
+                                    </ul>
+                                </li>
+                            {% else %}
+                                <li class="nav-item">
+                                    <a class="nav-link text-white" href="{% url 'users:login' %}">Войти</a>
+                                </li>
+                            {% endif %}
+                        </ul>
+                    </div>
                 </div>
             </div>
         </nav>
     </header>
-    <section>
-        <div class="container">
-            <!-- Каталог и корзина с фиксированным расположением на странице -->
-            <div class="row mt-1 position-fixed z-3">
-                <!-- Каталог -->
-                <!-- Каталог (Умный Переключатель) -->
-                <div class="dropdown mb-2">
 
-                {# --- ЛОГИКА ПЕРЕКЛЮЧАТЕЛЯ --- #}
-                {% if is_catalog_page %}
-                {# Если мы на странице каталога, делаем кнопку с выпадающим списком #}
-                    <button class="btn btn-secondary dropdown-toggle btn-dark" type="button" data-bs-toggle="dropdown"
-                        aria-expanded="false">
-                            Каталог
-                        <img class="mx-1" src='{% static "icons/grid-fill.svg" %}' alt="Catalog Icon" width="16" height="16">
-                    </button>
-                    <ul class="dropdown-menu bg-dark" data-bs-theme="dark">
-                    <li><a class="dropdown-item text-white" href="{% url 'products:index' %}">Все товары</a></li>
-                        {% for category in categories %}
-                            <li><a class="dropdown-item text-white" href="{% url 'products:category' category.slug %}">{{ category.name }}</a></li>
-                        {% endfor %}
-                    </ul>
-                {% else %}
-                {# Если мы на ЛЮБОЙ ДРУГОЙ странице, делаем кнопку-ссылку #}
-                    <a href="{% url 'products:index' %}" class="btn btn-secondary btn-dark">
-                        Каталог
-                            <img class="mx-1" src='{% static "icons/grid-fill.svg" %}' alt="Catalog Icon" width="16" height="16">
-                    </a>
-                {% endif %}
-
+    {% if messages %}
+    <div class="container mt-3">
+        {% for message in messages %}
+            <div class="alert alert-{% if message.tags %}{{ message.tags }}{% else %}success{% endif %} alert-dismissible fade show" role="alert">
+                {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
-                <!-- Значек корзины, вызывает модальное окно -->
-                <div>
-                    <button type="button" class="btn btn-dark btn-secondary d-flex" id="modalButton"
-                        aria-expanded="false">
-                        <img class="mx-1" src='{% static "icons/basket2-fill.svg" %}' alt="Catalog Icon" width="24"
-                            height="24">
-                        <span id="goods-in-cart-count">0</span>
-                    </button>
+        {% endfor %}
+    </div>
+    {% endif %}
+    <!-- ======================================== -->
+    <!-- ОСНОВНОЙ КОНТЕНТ (ГЛАВНОЕ "ОКНО")       -->
+    <!-- ======================================== -->
+    <main>
+        {% block content %}
+            <!-- Это пространство будет полностью заполнено дочерним шаблоном -->
+        {% endblock %}
+    </main>
+
+    <!-- ======================================== -->
+    <!-- ФУТЕР (ПОДВАЛ)                         -->
+    <!-- ======================================== -->
+    {% block footer %}
+        <footer class="py-4 bg-dark">
+            <div class="container">
+                <p class="m-0 text-center text-white"> &copy; Apple iOStrade {% now "Y" %}</p>
+            </div>
+        </footer>
+    {% endblock %}
+
+    <!-- ======================================== -->
+    <!-- МОДАЛЬНОЕ ОКНО КОРЗИНЫ (ГЛОБАЛЬНОЕ)      -->
+    <!-- ======================================== -->
+    <div class="modal fade" id="cartModal" tabindex="-1" aria-labelledby="cartModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-scrollable">
+            <div class="modal-content" style="border-radius: var(--ios-border-radius);">
+                <div class="modal-header bg-dark text-white">
+                    <h5 class="modal-title" id="cartModalLabel">
+                        <img src="{% static 'icons/basket2-fill-white.svg' %}" alt="Корзина" width="24" height="24" class="me-2">
+                        Ваша корзина
+                    </h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <!-- Разметка модального окна корзины -->
-                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-                    aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-scrollable">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                    aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                <h3 class="text-center mb-4">Корзина</h3>
-                                <div class="container" id="cart-items-container">
-                                    <!-- Разметка корзины -->
-                                    <div class="card mb-3 text-bg-light shadow-lg">
-                                        <div class="card-header">
-                                            <h5 class="card-title">Товар</h5>
-                                        </div>
-                                        <ul class="list-group list-group-flush">
-                                            <li class="list-group-item">
-                                                <div class="row text-center">
-                                                    <div class="col p-0">
-                                                        <div class="input-group">
-                                                            <span class="input-group-btn">
-                                                                <button type="button" class="btn btn-dark btn-sm decrement"
-                                                                    data-cart-id="" data-cart-change-url="">-</button>
-                                                            </span>
-                                                            <input type="text" class="form-control number" value="1"
-                                                                readonly>
-                                                            <span class="input-group-btn">
-                                                                <button type="button" class="btn btn-dark btn-sm increment"
-                                                                    data-cart-id="" data-cart-change-url="">+</button>
-                                                            </span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col p-0">
-                                                        <p>x 100.00 = </p>
-                                                    </div>
-                                                    <div class="col p-0"><strong>100.00 $</strong></div>
-                                                    <div class="col p-0">
-                                                        <a href="#" class="remove-from-cart" data-cart-id="">
-                                                            <img class="mx-1" src='{% static "icons/trash3-fill.svg" %}'
-                                                                alt="Catalog Icon" width="16" height="16">
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div class="card mb-3 shadow-lg">
-                                        <div class="card-footer">
-                                            <p class="float-left">Итого <strong>1</strong> товар(а) на сумму</p>
-                                            <h4 class="float-left"><strong>100.00 $</strong></h4>
-                                        </div>
-                                    </div>
-                                    <!-- Закончилась разметка корзины -->
-                                </div>
-                                <a class="btn btn-dark" href="orders/create_order.html">
-                                    Оформить заказ
-                                </a>
-                            </div>
-                        </div>
-                    </div>
+
+                <div class="modal-body">
+                    {% user_cart_component %}
                 </div>
-                <!-- Закончилась разметка модального окна -->
+
             </div>
         </div>
-        <!-- Контент -->
-        <div class="container">
-            <div class="row mt-1">
-                <div class="col-lg-2">
-                    <!-- Пустой блок на Ваше усмотрение -->
-                </div>
-                <div class="col-lg-10">
-                    <!-- Контент на странице -->
-                    {% block content %} {% endblock%}
-                </div>
-            </div>
-        </div>
-    </section>
+    </div>
 
-    {% block footer %}{% endblock %}
+    <!-- ======================================== -->
+    <!-- СКРИПТЫ                                -->
+    <!-- ======================================== -->
+    <script src="{% static 'js/bootstrap/bootstrap.bundle.min.js' %}"></script>
+    {% block js %}{% endblock %}
 
-    <script src='{% static "js/jquery/jquery-3.7.0.min.js" %}'></script>
-    <script src='{% static "js/jquery-events.js" %}'></script>
-    <script src='{% static "js/jquery-ajax.js" %}'></script>
-    <script src='{% static "js/bootstrap/bootstrap.bundle.min.js"" %}'></script>
 </body>
-
 </html>

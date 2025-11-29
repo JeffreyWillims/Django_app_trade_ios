@@ -82,7 +82,7 @@ $(document).ready(function () {
                 successMessage.html(data.message);
                 successMessage.fadeIn(400);
                 // Через 7сек убираем сообщение
-                setTimeout(function () {
+                setTimeout(function (4) {
                     successMessage.fadeOut(400);
                 }, 7000);
 

@@ -1,96 +1,80 @@
 /*
  * ====================================================================
- * Custom CSS for iOS Apple Store Theme
- * Author: Your Name
- * Version: 1.0
+ * iOStrade - Main Stylesheet
+ * Version: 1.2
  * ====================================================================
  */
 
+
 /* --------------------------------------------------------------------
  *  1. Root Variables & Global Styles
- *     - Определяем нашу цветовую палитру и основные шрифты.
  * -------------------------------------------------------------------- */
 :root {
-    --ios-blue: #007aff; /* Классический синий цвет Apple для ссылок и акцентов */
-    --ios-light-gray: #f5f5f7; /* Очень светлый серый для фонов */
-    --ios-medium-gray: #d2d2d7; /* Серый для границ и разделителей */
-    --ios-dark-gray: #1d1d1f; /* Глубокий серый, почти черный, для текста */
-    --ios-card-background: #ffffff; /* Чистый белый для карточек */
-    --ios-border-radius: 18px; /* Скругление углов, характерное для iOS */
-    --ios-transition: all 0.3s cubic-bezier(.25,.8,.25,1); /* Плавная анимация */
+    --ios-blue: #007aff;
+    --ios-light-gray: #f5f5f7;
+    --ios-medium-gray: #d2d2d7;
+    --ios-dark-gray: #1d1d1f;
+    --ios-card-background: #ffffff;
+    --ios-border-radius: 18px;
+    --ios-transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+}
+
+html {
+    height: 100%;
 }
 
 body {
-    background-color: var(--ios-light-gray); /* Устанавливаем светлый фон для всего сайта */
+    /* Стили для Flexbox, чтобы футер был прижат к низу */
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+
+    /* Стили для фона */
+    background-image: url("../images/bg-image.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center center;
+    background-size: cover;
+
+    /* Стили для текста и шрифтов */
     color: var(--ios-dark-gray);
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; /* Нативный шрифт Apple */
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+main {
+    /* Заставляет основной контент занимать все доступное пространство */
+    flex-grow: 1;
 }
 
 /* --------------------------------------------------------------------
- *  2. Product Card Styling (.card)
- *     - Превращаем стандартную карточку Bootstrap в премиальный продукт.
+ *  2. General Card Styling
  * -------------------------------------------------------------------- */
 .card {
-    border: 1px solid var(--ios-medium-gray); /* Тонкая, едва заметная рамка */
+    border: 1px solid var(--ios-medium-gray);
     border-radius: var(--ios-border-radius);
     background-color: var(--ios-card-background);
     transition: var(--ios-transition);
-    box-shadow: 0 4px 12px rgba(0,0,0,0.05); /* Очень мягкая тень */
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
 }
 
 .card:hover {
-    transform: translateY(-5px); /* Легкий эффект "всплывания" при наведении */
+    transform: translateY(-5px);
     box-shadow: 0 10px 20px rgba(0,0,0,0.1);
 }
 
-.card .card-img-top {
-    border-top-left-radius: var(--ios-border-radius);
-    border-top-right-radius: var(--ios-border-radius);
-    padding: 1rem; /* Добавляем "воздух" вокруг изображения */
-    background-color: var(--ios-light-gray); /* Фон для самой картинки */
-}
+/* ... другие общие стили для карточек, если нужны ... */
 
-.card .card-title {
-    font-weight: 600; /* Делаем заголовок более выразительным */
-    font-size: 1.1rem;
-    color: var(--ios-dark-gray);
-    margin-bottom: 0.5rem;
-}
-
-.card .card-text {
-    font-size: 0.9rem;
-    color: #6e6e73; /* Вторичный серый для описания */
-}
-
-.card .btn-outline-primary {
-    border-color: var(--ios-blue);
-    color: var(--ios-blue);
-    border-radius: 999px; /* Полностью скругленные кнопки "Pill" */
-    font-weight: 500;
-    transition: var(--ios-transition);
-}
-
-.card .btn-outline-primary:hover {
-    background-color: var(--ios-blue);
-    color: #fff;
-}
 
 /* --------------------------------------------------------------------
  *  3. Sidebar Styling (.list-group)
- *     - Оформляем сайдбар с категориями и фильтрами.
  * -------------------------------------------------------------------- */
 .list-group {
     border: none;
     border-radius: 12px;
 }
 
-.list-group-item {
-    border: 1px solid transparent;
-    transition: var(--ios-transition);
-}
-
 .list-group-item.active {
-    background-color: var(--ios-dark-gray); /* Активный элемент в цвет текста */
+    background-color: var(--ios-dark-gray);
     border-color: var(--ios-dark-gray);
 }
 
@@ -100,42 +84,22 @@ body {
 }
 
 /* --------------------------------------------------------------------
- *  4. Pagination Styling (.pagination)
- *     - Делаем пагинацию более элегантной.
+ *  4. Pagination Styling
  * -------------------------------------------------------------------- */
 .pagination .page-link {
     border: none;
     border-radius: 8px;
     margin: 0 4px;
     color: var(--ios-blue);
-    transition: var(--ios-transition);
 }
 
 .pagination .page-item.active .page-link {
     background-color: var(--ios-blue);
     color: #fff;
-    box-shadow: 0 4px 10px rgba(0, 122, 255, 0.3);
-}
-
-.pagination .page-item.disabled .page-link {
-    color: var(--ios-medium-gray);
-}
-
-.pagination .page-link:hover {
-    background-color: #e9ecef;
 }
 
 /* --------------------------------------------------------------------
- *  5. Utility Classes
- *     - Дополнительные мелочи для полировки.
- * -------------------------------------------------------------------- */
-.custom-shadow {
-    box-shadow: 0 4px 12px rgba(0,0,0,0.05) !important;
-}
-
-/* --------------------------------------------------------------------
- *  6. Advanced Product Card Styling
- *     - Дополнительные стили для улучшения вида карточки товара.
+ *  5. Advanced Product Card Styling
  * -------------------------------------------------------------------- */
 .product-card {
     display: flex;
@@ -158,12 +122,12 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    object-fit: contain; /* 'contain' - лучший вариант для товаров, чтобы они влезали целиком */
+    object-fit: contain;
     transition: transform 0.3s ease-in-out;
 }
 
 .product-card:hover .product-card-img {
-    transform: scale(1.05); /* Легкий зум при наведении */
+    transform: scale(1.05);
 }
 
 .product-card-discount-badge {
@@ -191,7 +155,6 @@ body {
     height: 20px;
 }
 
-/* Растянутая ссылка делает всю карточку кликабельной */
 .stretched-link::after {
     position: absolute;
     top: 0;
@@ -200,4 +163,55 @@ body {
     left: 0;
     z-index: 1;
     content: "";
+}
+
+.add-to-cart-btn {
+    padding: 0.375rem 0.75rem;
+
+    /* --- НАЧАЛО ИЗМЕНЕНИЙ --- */
+    position: relative; /* 1. Включаем z-index для этого элемента */
+    z-index: 2;         /* 2. Ставим его выше, чем z-index у stretched-link (который равен 1) */
+    /* --- КОНЕЦ ИЗМЕНЕНИЙ --- */
+}
+
+.add-to-cart-btn img {
+    width: 20px;
+    height: 20px;
+}
+
+/* --------------------------------------------------------------------
+ *  6. Animations
+ * -------------------------------------------------------------------- */
+.fade-in-on-load {
+    animation: fadeIn 0.8s ease-in-out forwards;
+    opacity: 0;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* --------------------------------------------------------------------
+ *  4. Page-Specific Components (продолжение)
+ * -------------------------------------------------------------------- */
+
+/* --- Catalog: Header --- */
+.catalog-header {
+    background-color: var(--ios-card-background);
+    padding: 2rem 2.5rem;
+    border-radius: var(--ios-border-radius);
+    margin-bottom: 2rem;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    border: 1px solid var(--ios-medium-gray);
+}
+
+.catalog-header h1 {
+    font-weight: 700;
 }

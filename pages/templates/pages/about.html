@@ -1,18 +1,26 @@
 {% extends "base.html" %}
 {% load static %}
 
-{% block css %}
-    {# Подключаем наш новый, CSS для этой страницы #}
-    <link rel="stylesheet" href="{% static 'css/ios_about.css' %}">
-{% endblock %}
-
 {% block content %}
 <div class="about-page">
-    <!-- Секция 1: Главный заголовок (Hero Section) -->
-    <section class="about-header text-center">
+
+    <!-- ==================================================================== -->
+    <!-- Секция 1: Hero Header (Новая версия)                                 -->
+    <!-- Мы переиспользуем стили с главной страницы!                          -->
+    <!-- ==================================================================== -->
+
+    <section class="about-hero-section mb-5">
         <div class="container">
-            <h1 class="display-4 fw-bold">Больше, чем просто магазин</h1>
-            <h3 class="lead text-muted">Ваш надежный проводник в мир техники Apple и эксклюзивного сервиса.</h3>
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <div class="hero-block compact">
+                        <div class="hero-content text-center">
+                            <h1 class="display-4 fw-bold hero-title">Больше, чем просто магазин</h1>
+                            <p class="lead hero-subtitle">Ваш надежный проводник в мир техники Apple и эксклюзивного сервиса.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -54,33 +62,85 @@
         </div>
     </section>
 
-    <!-- Секция 3: Повествование "О нас" -->
+    <!-- ==================================================================== -->
+    <!-- Секция 3: Повествование "О нас" (Премиум-версия)                     -->
+    <!-- ==================================================================== -->
     <section class="narrative-section">
         <div class="container">
-            <div class="row align-items-center">
+            <div class="row align-items-center g-5"> {# Увеличили отступ между колонками до g-5 #}
+
+                <!-- Левая колонка с изображением -->
                 <div class="col-lg-6">
-                    <img src="{% static 'images/about-us-image.jpg' %}" class="img-fluid rounded-4 shadow-lg" alt="iOStrade бутик">
+                    <div class="narrative-image-wrapper">
+                        <img src="{% static 'images/about-us-image.jpg' %}" class="img-fluid narrative-image" alt="iOStrade бутик">
+                    </div>
                 </div>
+
                 <div class="col-lg-6">
-                    <h2 class="display-5 fw-bold mb-4">Наш подход к делу</h2>
-                    <p class="text-muted fs-5">iOStrade — это мультибрендовый бутик электроники, где вы можете приобрести оригинальную продукцию Apple с гарантией и доставкой.</p>
-                    <p class="text-muted">Наши специалисты с удовольствием помогут в подборе нового устройства или выполнят ремонт текущего, используя только оригинальные комплектующие. Мы предоставляем исключительный сервис и создаем для вас максимально комфортные условия при выборе и покупке.</p>
+                    <!-- Добавляем классы card, p-4/p-lg-5 для создания блока -->
+                    <div class="narrative-text card h-100 p-4 p-lg-5">
+                        <h2 class="display-5 fw-bold mb-3">Наш подход к делу</h2>
+
+                        <!-- Убираем класс text-primary -->
+                        <p class="lead fw-medium mb-4">Премиальный сервис. Абсолютная надежность.</p>
+
+                        <h4 class="text-muted">iOStrade — это мультибрендовый бутик электроники, где вы приобретаете оригинальную продукцию Apple с официальной гарантией и персональной поддержкой.</h4>
+                        <h5 class="text-muted">Наши эксперты помогут в подборе нового устройства или выполнят ремонт текущего, используя исключительно оригинальные комплектующие. Мы создаем для вас комфортные условия, чтобы выбор и покупка техники приносили только удовольствие.</h5>
+                    </div>
                 </div>
+
             </div>
         </div>
     </section>
 
-    <!-- Секция 4: "Почему мы?" (Список преимуществ) -->
+    <!-- ==================================================================== -->
+    <!-- Секция 4: "Почему мы?" (Новый, улучшенный дизайн)                   -->
+    <!-- ==================================================================== -->
     <section class="why-us-section">
         <div class="container">
             <h2 class="text-center display-5 fw-bold mb-5">Почему выбирают нас?</h2>
-            <ul class="why-us-list">
-                <li class="why-us-item">Только оригинальная техника ведущих мировых брендов.</li>
-                <li class="why-us-item">Честное консультирование по любым вопросам, связанным с техникой.</li>
-                <li class="why-us-item">Беспроцентная рассрочка и оплата по частям с Яндекс Сплит.</li>
-                <li class="why-us-item">Возможность заказать устройства кастомных комплектаций.</li>
-                <li class="why-us-item">Страхование устройств от различных рисков при эксплуатации.</li>
-            </ul>
+            <div class="row g-4">
+                <!-- Пункт 1 -->
+                <div class="col-md-6">
+                    <div class="benefit-item">
+                        <div class="benefit-icon"><img src="{% static 'icons/shield-check.svg' %}" alt=""></div>
+                        <div class="benefit-text">
+                            <h5 class="fw-bold">Оригинальная техника</h5>
+                            <p class="text-muted mb-0">Только сертифицированные устройства.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Пункт 2 -->
+                <div class="col-md-6">
+                    <div class="benefit-item">
+                        <div class="benefit-icon"><img src="{% static 'icons/chat-dots.svg' %}" alt=""></div>
+                        <div class="benefit-text">
+                            <h5 class="fw-bold">Честное консультирование</h5>
+                            <p class="text-muted mb-0">Поможем выбрать то, что нужно именно вам.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Пункт 3 -->
+                <div class="col-md-6">
+                    <div class="benefit-item">
+                        <div class="benefit-icon"><img src="{% static 'icons/credit-card.svg' %}" alt=""></div>
+                        <div class="benefit-text">
+                            <h5 class="fw-bold">Гибкая оплата</h5>
+                            <p class="text-muted mb-0">Беспроцентная рассрочка и оплата по частям.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Пункт 4 -->
+                <div class="col-md-6">
+                    <div class="benefit-item">
+                        <div class="benefit-icon"><img src="{% static 'icons/box-settings.svg' %}" alt=""></div>
+                        <div class="benefit-text">
+                            <h5 class="fw-bold">Кастомные комплектации</h5>
+                            <p class="text-muted mb-0">Возможность заказать устройства в нужной конфигурации.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 </div>
