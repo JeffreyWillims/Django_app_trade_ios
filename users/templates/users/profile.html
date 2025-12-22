@@ -1,6 +1,5 @@
 {% extends "base.html" %}
-{% load static %}
-{% load carts_tags %}
+{% load static carts_tags products_tags %}
 
 {% block title %}Личный кабинет{% endblock %}
 
@@ -25,7 +24,6 @@
                             {% endif %}
                         </div>
 
-                        <!-- Рендерим поля формы. Django позаботится о классах. -->
                         <div class="mb-3">
                             <label for="{{ form.image.id_for_label }}" class="form-label">Сменить аватар</label>
                             {{ form.image }}
@@ -61,31 +59,111 @@
             </div>
         </div>
 
-        <!-- Правая колонка: Заказы и другая информация -->
+        <!-- Правая колонка: Корзина и Заказы -->
         <div class="col-lg-7">
 
-    <!-- ======================================== -->
-    <!-- БЛОК КОРЗИНЫ                             -->
-    <!-- ======================================== -->
-    <div class="card shadow-lg border-0 mb-4" style="border-radius: var(--ios-border-radius);">
-        <div class="card-header text-center bg-dark text-white p-3">
-            <h3 class="mb-0">Моя корзина</h3>
-        </div>
-        <div class="card-body" id="cart-items-container">
-            {# Вызываем наш умный тег-компонент, который сам все сделает #}
-            {% user_cart_component %}
-        </div>
-    </div>
+            <!-- БЛОК КОРЗИНЫ -->
+            <div class="card shadow-lg border-0 mb-4" style="border-radius: var(--ios-border-radius);">
+                <div class="card-header text-center bg-dark text-white p-3">
+                    <h3 class="mb-0">Моя корзина</h3>
+                </div>
+                <div class="card-body p-0 cart-component-container">
+                    {% user_cart %}
+                </div>
+            </div>
 
-    <!-- ======================================== -->
-    <!-- БЛОК С ЗАКАЗАМИ (остается как был)      -->
-    <!-- ======================================== -->
-    <div class="card shadow-lg border-0" style="border-radius: var(--ios-border-radius);">
-        <div class="card-header text-center bg-dark text-white p-3">
-            <h3 class="mb-0">Мои заказы</h3>
-        </div>
-        <div class="card-body">
-            <p class="text-center text-muted">Здесь будет отображаться история ваших заказов.</p>
+            <!-- БЛОК С ЗАКАЗАМИ -->
+            <div class="card shadow-lg border-0" style="border-radius: var(--ios-border-radius);">
+                <div class="card-header text-center bg-dark text-white p-3">
+                    <h3 class="mb-0">Мои заказы</h3>
+                </div>
+                <div class="card-body">
+                    {% if page_obj %}
+                        <div class="accordion" id="ordersAccordion">
+                            {% for order in page_obj %}
+                                <div class="accordion-item order-card mb-3" data-status="{{ order.status }}">
+                                    <h2 class="accordion-header" id="heading{{ order.id }}">
+                                        <button class="accordion-button {% if not forloop.first %}collapsed{% endif %}" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{ order.id }}" aria-expanded="{% if forloop.first %}true{% else %}false{% endif %}" aria-controls="collapse{{ order.id }}">
+                                            <div class="order-summary">
+                                                <div class="order-info">
+                                                    <strong>Заказ №{{ order.id }}</strong>
+                                                    <small class="text-muted">{{ order.created_timestamp|date:"d E Y" }}</small>
+                                                </div>
+                                                <div class="order-status">
+                                                    <span class="badge">{{ order.get_status_display }}</span>
+                                                </div>
+                                                <div class="order-product-preview-text">
+                                                    {% with first_item=order.orderitem_set.all.0 %}
+                                                        <span>{{ first_item.name }}</span>
+                                                        {% if order.orderitem_set.all|length > 1 %}
+                                                            <span class="text-muted">&nbsp;+ еще {{ order.orderitem_set.all|length|add:"-1" }}</span>
+                                                        {% endif %}
+                                                    {% endwith %}
+                                                </div>
+                                                <div class="order-total">
+                                                    <strong>{{ order.total_sum }} ₽</strong>
+                                                </div>
+                                            </div>
+                                        </button>
+                                    </h2>
+                                    <div id="collapse{{ order.id }}" class="accordion-collapse collapse {% if forloop.first %}show{% endif %}" aria-labelledby="heading{{ order.id }}" data-bs-parent="#ordersAccordion">
+                                        <div class="accordion-body">
+                                            <p><strong>Получатель:</strong> {{ order.first_name }} {{ order.last_name }}</p>
+                                            <p><strong>Адрес доставки:</strong> {{ order.address }}</p>
+                                            <hr>
+
+                                            <!-- =============================== -->
+                                            <!-- НАЧАЛО ИЗМЕНЕНИЙ (НОВАЯ ТАБЛИЦА) -->
+                                            <!-- =============================== -->
+                                            <table class="table table-hover align-middle">
+                                                <thead>
+                                                    <tr>
+                                                        <th scope="col" colspan="2">Товар</th>
+                                                        <th scope="col" class="text-center">Кол-во</th>
+                                                        <th scope="col" class="text-end">Цена</th>
+                                                        <th scope="col" class="text-end">Сумма</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    {% for item in order.orderitem_set.all %}
+                                                    <tr>
+                                                        <td style="width: 80px;">
+                                                            <a href="{% url 'products:product' item.product.slug %}">
+                                                                {% if item.product.image %}
+                                                                    <img src="{{ item.product.image.url }}" class="img-fluid rounded" alt="{{ item.name }}">
+                                                                {% else %}
+                                                                    <img src="{% static 'images/Not found image.png' %}" class="img-fluid rounded" alt="Нет изображения">
+                                                                {% endif %}
+                                                            </a>
+                                                        </td>
+                                                        <td>
+                                                            <a href="{% url 'products:product' item.product.slug %}" class="text-dark text-decoration-none">{{ item.name }}</a>
+                                                        </td>
+                                                        <td class="text-center">{{ item.quantity }}</td>
+                                                        <td class="text-end text-nowrap">{{ item.price }} ₽</td>
+                                                        <td class="text-end text-nowrap"><strong>{{ item.quantity|mul:item.price }} ₽</strong></td>
+                                                    </tr>
+                                                    {% endfor %}
+                                                </tbody>
+                                            </table>
+                                            <!-- =============================== -->
+                                            <!-- КОНЕЦ ИЗМЕНЕНИЙ               -->
+                                            <!-- =============================== -->
+
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        <p class="text-center text-muted">У вас пока нет оформленных заказов.</p>
+                    {% endif %}
+
+                    <!-- Пагинация для заказов -->
+                    {% include "includes/pagination.html" %}
+
+                </div>
+            </div>
         </div>
     </div>
 </div>

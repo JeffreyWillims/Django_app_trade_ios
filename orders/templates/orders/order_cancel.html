@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Оплата отменена{% endblock %}
+
+{% block content %}
+<div class="container text-center my-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <img src="{% static 'icons/exclamation-circle-fill.svg' %}" alt="Canceled" width="80" height="80" class="text-warning mb-4">
+            <h1 class="display-5 fw-bold">Оплата была отменена</h1>
+            <p class="lead text-muted my-4">Вы можете вернуться в корзину и попробовать снова в любое время. Ваши товары ждут вас.</p>
+            <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+                <a href="{% url 'users:profile' %}" class="btn btn-primary btn-lg px-4 gap-3">Вернуться в корзину</a>
+                <a href="{% url 'products:index' %}" class="btn btn-outline-secondary btn-lg px-4">Продолжить покупки</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

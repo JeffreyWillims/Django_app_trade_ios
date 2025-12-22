@@ -33,36 +33,28 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-
                     <!-- Левая часть меню -->
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item"><a class="nav-link text-white" href="{% url 'products:index' %}">Каталог</a></li>
                         <li class="nav-item"><a class="nav-link text-white" href="{% url 'pages:about' %}">О нас</a></li>
-                        <li class="nav-item"><a class="nav-link text-white" href="#">Доставка и оплата</a></li>
+                        <li class="nav-item"><a class="nav-link text-white" href="{% url 'pages:delivery' %}">Доставка и оплата</a></li>
                     </ul>
-
                     <!-- Правая часть меню: Поиск, Корзина, Профиль -->
                     <div class="d-flex align-items-center">
-
                         <!-- Форма поиска -->
                         <form class="d-flex me-3" role="search" action="{% url 'products:index' %}" method="get">
                             <input class="form-control me-2" type="search" name="q" value="{{ request.GET.q }}" placeholder="Поиск..." aria-label="Search">
                             <button class="btn btn-outline-light" type="submit">Найти</button>
                         </form>
-
                         <!-- Список иконок и меню пользователя -->
-
                         <ul class="navbar-nav">
-
                             <!-- Иконка корзины -->
-
                             <li class="nav-item">
                                 <button type="button" class="btn btn-dark nav-link text-white position-relative" data-bs-toggle="modal" data-bs-target="#cartModal">
                                     <img src="{% static 'icons/basket2-fill.svg' %}" alt="Корзина" width="20" height="20">
-                                    {% cart_counter %}
+                                    <span class="badge bg-danger text-white rounded-pill position-absolute top-0 start-100 translate-middle cart-counter-badge" style="display: none;">0</span>
                                 </button>
                             </li>
-
                             <!-- Меню пользователя (с логикой) -->
                             {% if user.is_authenticated %}
                                 <li class="nav-item dropdown">
@@ -110,7 +102,7 @@
     </main>
 
     <!-- ======================================== -->
-    <!-- ФУТЕР (ПОДВАЛ)                         -->
+    <!-- ФУТЕР                                    -->
     <!-- ======================================== -->
     {% block footer %}
         <footer class="py-4 bg-dark">
@@ -134,8 +126,8 @@
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
 
-                <div class="modal-body">
-                    {% user_cart_component %}
+                <div class="modal-body cart-component-container">
+                    {% user_cart %}
                 </div>
 
             </div>
@@ -147,6 +139,6 @@
     <!-- ======================================== -->
     <script src="{% static 'js/bootstrap/bootstrap.bundle.min.js' %}"></script>
     {% block js %}{% endblock %}
-
+    <script src="{% static 'js/cart.js' %}"></script>
 </body>
 </html>

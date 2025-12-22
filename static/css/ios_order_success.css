@@ -1,0 +1,78 @@
+/*
+ * ====================================================================
+ * Custom CSS for "Apple-Style" Order Success Page
+ * ====================================================================
+ */
+@import url('main.css'); /* Наследуем переменные */
+
+.success-card {
+    background-color: var(--ios-card-background);
+    border-radius: 28px; /* Более сильное скругление, как у Apple */
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    border: 1px solid var(--ios-medium-gray);
+    overflow: hidden; /* Важно для скругления углов у дочерних элементов */
+    text-align: center;
+}
+
+/* --- Верхняя часть --- */
+.success-card-header {
+    padding: 3rem 1.5rem 2rem 1.5rem;
+}
+
+.success-icon-wrapper {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 80px;
+    height: 80px;
+    background-color: #d1e7dd;
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+}
+
+.success-icon-wrapper img {
+    width: 40px;
+    height: 40px;
+    filter: invert(49%) sepia(50%) saturate(552%) hue-rotate(95deg) brightness(91%) contrast(86%);
+}
+
+@keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(25, 135, 84, 0.4); }
+    70% { box-shadow: 0 0 0 15px rgba(25, 135, 84, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(25, 135, 84, 0); }
+}
+
+/* --- Средняя часть (детали) --- */
+.success-card-body {
+    padding: 1.5rem 2rem;
+    border-top: 1px solid var(--ios-medium-gray);
+    border-bottom: 1px solid var(--ios-medium-gray);
+}
+
+.success-card-body .list-group-item {
+    background-color: transparent;
+    border: none;
+    padding: 0.75rem 0;
+}
+
+/* --- Нижняя часть (футер карточки) --- */
+.success-card-footer {
+    padding: 2rem 1.5rem;
+    background-color: var(--ios-light-gray);
+    position: relative;
+}
+
+.next-steps-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.footer-logo {
+    position: absolute;
+    bottom: 1rem;
+    right: 1.5rem;
+    width: 52px;
+    height: 52px;
+    opacity: 11.4;
+}

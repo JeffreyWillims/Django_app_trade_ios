@@ -31,6 +31,8 @@ urlpatterns = [
     path('users/', include('users.urls', namespace='users')),
 
     path('carts/', include('carts.urls', namespace='carts')),
+
+    path('orders/', include('orders.urls', namespace='orders')),
 ]
 
 # --- Маршрут для раздачи медиафайлов в режиме разработки ---

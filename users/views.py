@@ -5,10 +5,12 @@ from django.contrib.auth.views import LoginView
 from django.contrib.messages.views import SuccessMessageMixin
 from django.views.generic import CreateView, UpdateView
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.core.paginator import Paginator
 
 from .forms import UserRegistrationForm, ProfileForm, UserLoginForm
 from .models import User
-
+from django.db.models import Prefetch, Sum, F
+from orders.models import Order, OrderItem
 
 class UserLoginView(SuccessMessageMixin, LoginView):
     """
@@ -56,8 +58,30 @@ class UserProfileView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['title'] = 'Личный кабинет'
-        # Логику с заказами пока уберем, чтобы сфокусироваться на аутентификации
-        # context['orders'] = Order.objects.filter(user=self.request.user)...
+
+        orders_queryset = Order.objects.filter(user=self.request.user).prefetch_related(
+            Prefetch(
+                "orderitem_set",
+                queryset=OrderItem.objects.select_related("product"),
+            )
+        ).annotate(
+            # 2. Вычисляем итоговую сумму заказа прямо в базе данных. Это СВЕРХЭФФЕКТИВНО.
+            total_sum=Sum(F('orderitem__quantity') * F('orderitem__price'))
+        ).order_by("-created_timestamp")
+
+        # 3. Создаем объект пагинатора
+        paginator = Paginator(orders_queryset, 5)  # 5 заказов на страницу, как ты и просил
+
+        # 4. Получаем номер страницы из GET-запроса
+        page_number = self.request.GET.get('page')
+
+        # 5. Получаем объект текущей страницы
+        page_obj = paginator.get_page(page_number)
+
+        # 6. Передаем в контекст не 'orders', а 'page_obj'
+        context['page_obj'] = page_obj
+        # --- КОНЕЦ АРХИТЕКТУРНОЙ МАГИИ ---
+
         return context
 
 

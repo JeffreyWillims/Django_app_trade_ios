@@ -1,0 +1,69 @@
+/*
+ * ====================================================================
+ * Custom CSS for "Accordion" Component (iOS Apple Theme)
+ * ====================================================================
+ */
+@import url('main.css'); /* Наследуем переменные */
+
+.accordion-item {
+    background-color: var(--ios-card-background);
+    border: 1px solid var(--ios-medium-gray) !important;
+    border-radius: 12px !important;
+    margin-bottom: 1rem;
+    overflow: hidden;
+}
+
+.accordion-header {
+    /* Убираем лишние бордеры */
+    border-bottom: none !important;
+}
+
+.accordion-button {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--ios-dark-gray);
+    background-color: var(--ios-card-background);
+}
+
+.accordion-button:not(.collapsed) {
+    color: var(--ios-blue);
+    background-color: var(--ios-light-gray);
+    box-shadow: none; /* Убираем стандартную тень Bootstrap */
+}
+
+.accordion-button:focus {
+    box-shadow: none;
+    border-color: rgba(0,0,0,.125);
+}
+
+/* Стили для иконки в кнопке */
+.accordion-icon {
+    width: 24px;
+    height: 24px;
+    margin-right: 1rem;
+    filter: invert(50%) sepia(10%) saturate(6000%) hue-rotate(180deg) brightness(80%) contrast(90%); /* Перекрашиваем в синий */
+}
+
+/* Изменяем стандартную иконку "+"/"-" Bootstrap на более стильную */
+.accordion-button::after {
+    flex-shrink: 0;
+    width: 1.5rem;
+    height: 1.5rem;
+    margin-left: auto;
+    content: "";
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23007aff'%3e%3cpath fill-rule='evenodd' d='M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z'/%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-size: 1.5rem;
+    transition: transform .2s ease-in-out;
+}
+
+.accordion-button:not(.collapsed)::after {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23007aff'%3e%3cpath d='M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8Z'/%3e%3c/svg%3e");
+    transform: none; /* Убираем вращение, так как у нас разные иконки */
+}
+
+.accordion-body {
+    font-size: 1.1rem;
+    color: #555;
+    padding-top: 0;
+}

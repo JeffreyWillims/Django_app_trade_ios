@@ -14,3 +14,8 @@ def change_params(request, **kwargs):
             query.pop(key, None)
 
     return query.urlencode()
+
+@register.filter
+def mul(value, arg):
+    """Умножает value на arg."""
+    return value * arg

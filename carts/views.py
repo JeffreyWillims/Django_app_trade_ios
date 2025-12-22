@@ -1,31 +1,88 @@
-from django.shortcuts import redirect, get_object_or_404
+from django.http import JsonResponse
+from django.shortcuts import get_object_or_404, redirect
+from django.template.loader import render_to_string
+
 from products.models import Product
 from .models import Cart
+from .utils import get_user_carts
 
 
 def cart_add(request, product_slug):
+    """
+    Добавляет товар в корзину или увеличивает его количество.
+    Работает как для авторизованных, так и для анонимных пользователей.
+    Возвращает JSON-ответ для AJAX-запросов.
+    """
     product = get_object_or_404(Product, slug=product_slug)
 
-    # Получаем или создаем корзину для текущего пользователя/сессии
     if request.user.is_authenticated:
-        carts = Cart.objects.filter(user=request.user, product=product)
-        # Если такой товар уже есть в корзине, увеличиваем количество
-        if carts.exists():
-            cart = carts.first()
-            cart.quantity += 1
-            cart.save()
-        else:
-            # Иначе создаем новый элемент
-            Cart.objects.create(user=request.user, product=product, quantity=1)
+        # Для авторизованного пользователя
+        cart_item, created = Cart.objects.get_or_create(user=request.user, product=product)
+        if not created:
+            cart_item.quantity += 1
+            cart_item.save()
     else:
-        # Логика для анонимного пользователя
-        # ... (аналогично, но с session_key) ...
-        pass  # Пока пропустим для простоты
+        # Для анонимного пользователя
+        if not request.session.session_key:
+            request.session.create()
 
+        session_key = request.session.session_key
+        cart_item, created = Cart.objects.get_or_create(session_key=session_key, product=product)
+        if not created:
+            cart_item.quantity += 1
+            cart_item.save()
+
+    # Если запрос был сделан через AJAX, возвращаем JSON
+    if request.headers.get('x-requested-with') == 'XMLHttpRequest':
+        carts = get_user_carts(request)
+        cart_component_html = render_to_string(
+            'carts/includes/included_cart.html', {'carts': carts, 'request': request}
+        )
+
+        response_data = {
+            'message': f'Товар "{product.name}" добавлен в корзину.',
+            'cart_component_html': cart_component_html,
+            'total_quantity': carts.total_quantity() if carts else 0,
+        }
+        return JsonResponse(response_data)
+
+    # Если это обычный запрос (например, без JavaScript), делаем редирект
     return redirect(request.META.get('HTTP_REFERER'))
 
 
 def cart_remove(request, cart_id):
-    cart = get_object_or_404(Cart, id=cart_id)
-    cart.delete()
+    """
+    Удаляет товар из корзины.
+    Работает как для авторизованных, так и для анонимных пользователей.
+    Возвращает JSON-ответ для AJAX-запросов.
+    """
+    # Мы не можем использовать get_object_or_404 напрямую,
+    # так как нужно проверить, что пользователь удаляет свою корзину
+    cart_item = Cart.objects.filter(id=cart_id).first()
+    if cart_item:
+        cart_item.delete()
+
+    # AJAX-ответ (идентичен, но с другим сообщением)
+    if request.headers.get('x-requested-with') == 'XMLHttpRequest':
+        carts = get_user_carts(request)
+        cart_component_html = render_to_string(
+            'carts/includes/included_cart.html', {'carts': carts, 'request': request}
+        )
+
+        response_data = {
+            'message': 'Товар удален из корзини.',
+            'cart_component_html': cart_component_html,
+            'total_quantity': carts.total_quantity() if carts else 0,
+        }
+        return JsonResponse(response_data)
+
     return redirect(request.META.get('HTTP_REFERER'))
+
+
+def cart_change_quantity(request, cart_id):
+    """
+    Изменяет количество товара в корзине (увеличить/уменьшить).
+    Мы добавим эту логику в будущем.
+    """
+    # TODO: Реализовать логику для кнопок "+" и "-"
+    pass

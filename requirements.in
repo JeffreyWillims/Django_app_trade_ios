@@ -6,3 +6,4 @@ djangorestframework-simplejwt
 drf-spectacular
 python-dotenv
 Pillow
+stripe

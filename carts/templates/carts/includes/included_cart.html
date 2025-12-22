@@ -1,8 +1,6 @@
 {% load static %}
 
-{# Этот шаблон НЕ должен сам загружать теги или вызывать user_carts #}
-{# Он просто ожидает, что ему передадут переменную 'carts' #}
-
+<div class="cart-body-content">
 {% if carts %}
     <ul class="list-group list-group-flush">
         {% for cart_item in carts %}
@@ -29,7 +27,7 @@
                         <strong class="text-nowrap">{{ cart_item.products_price }} ₽</strong>
                     </div>
                     <div class="col-12 col-md-1 text-end mt-2 mt-md-0">
-                        <a href="{% url 'carts:cart_remove' cart_id=cart_item.id %}" class="text-danger">
+                        <a href="{% url 'carts:cart_remove' cart_id=cart_item.id %}" class="text-danger remove-from-cart-btn">
                             <img src="{% static 'icons/trash3-fill.svg' %}" alt="Удалить" width="16" height="16">
                         </a>
                     </div>
@@ -44,7 +42,7 @@
         </div>
     </div>
     <div class="mt-3 text-end">
-        <a href="#" class="btn btn-primary">Оформить заказ</a>
+        <a href="{% url 'orders:create_order' %}" class="btn btn-primary">Оформить заказ</a>
     </div>
 {% else %}
     <p class="text-center text-muted py-4">Ваша корзина пуста.</p>

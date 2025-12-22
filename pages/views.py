@@ -17,3 +17,12 @@ class AboutView(TemplateView):
         context = super().get_context_data(**kwargs)
         context['title'] = 'О нас - iOStrade' # Обнови заголовок для вкладки браузера
         return context
+
+
+class DeliveryAndPaymentView(TemplateView):
+    template_name = 'pages/delivery_and_payment.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'Доставка и оплата - iOStrade'
+        return context

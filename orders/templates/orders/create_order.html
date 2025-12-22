@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Оформление заказа{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1 class="mb-4">Оформление заказа</h1>
+    <div class="row">
+
+        <!-- Левая колонка: Форма для данных -->
+        <div class="col-lg-7">
+            <div class="card shadow-lg border-0 mb-4" style="border-radius: var(--ios-border-radius);">
+                <div class="card-header bg-dark text-white p-3">
+                    <h3 class="mb-0">Данные получателя</h3>
+                </div>
+                <div class="card-body p-4">
+                    <form action="{% url 'orders:create_order' %}" method="post" novalidate>
+                        {% csrf_token %}
+
+                        <!-- Рендерим нашу Django-форму. Она уже стилизована. -->
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                {{ form.first_name.label_tag }}
+                                {{ form.first_name }}
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                {{ form.last_name.label_tag }}
+                                {{ form.last_name }}
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            {{ form.email.label_tag }}
+                            {{ form.email }}
+                        </div>
+                        <div class="mb-3">
+                            {{ form.phone_number.label_tag }}
+                            {{ form.phone_number }}
+                        </div>
+                        <div class="mb-3">
+                            {{ form.address.label_tag }}
+                            {{ form.address }}
+                        </div>
+
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-primary btn-lg mt-2">Подтвердить и оформить заказ</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Правая колонка: Состав заказа -->
+        <div class="col-lg-5">
+            <div class="card shadow-lg border-0 sticky-top" style="border-radius: var(--ios-border-radius); top: 2rem;">
+                <div class="card-header bg-dark text-white p-3">
+                    <h3 class="mb-0">Ваш заказ</h3>
+                </div>
+                <div class="card-body p-4">
+
+                    {% if carts %}
+                        <ul class="list-group list-group-flush mb-3">
+                            {% for item in carts %}
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <div>
+                                    <h6 class="my-0">{{ item.product.name }}</h6>
+                                    <small class="text-muted">{{ item.quantity }} шт. x {{ item.product.sell_price }} ₽</small>
+                                </div>
+                                <span class="text-muted">{{ item.products_price }} ₽</span>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                        <hr>
+                        <div class="d-flex justify-content-between">
+                            <h5 class="fw-bold">Итого:</h5>
+                            <h5 class="fw-bold">{{ carts.total_price }} ₽</h5>
+                        </div>
+                    {% else %}
+                        <p class="text-center text-muted">Ваша корзина пуста.</p>
+                        <div class="d-grid">
+                            <a href="{% url 'products:index' %}" class="btn btn-outline-primary">Перейти в каталог</a>
+                        </div>
+                    {% endif %}
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+{% endblock %}

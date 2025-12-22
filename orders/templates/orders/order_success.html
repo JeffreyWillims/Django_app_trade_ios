@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Заказ успешно оформлен{% endblock %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/ios_order_success.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+
+            <!-- ======================================================= -->
+            <!-- НАЧАЛО НОВОГО, ЕДИНОГО БЛОКА                            -->
+            <!-- ======================================================= -->
+            <div class="success-card">
+
+                <!-- 1. Верхняя часть с подтверждением -->
+                <div class="success-card-header">
+                    <div class="success-icon-wrapper">
+                        <img src="{% static 'icons/check-circle-fill.svg' %}" alt="Success">
+                    </div>
+                    <h1 class="display-5 fw-bold mt-4">Спасибо за ваш заказ!</h1>
+                    <p class="lead text-muted">Мы уже начали его обработку.</p>
+                </div>
+
+                <!-- 2. Детали заказа (если они есть) -->
+                {% if order %}
+                <div class="success-card-body">
+                    <h5 class="text-center mb-3">Детали заказа</h5>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item d-flex justify-content-between">
+                            <span>Номер заказа:</span>
+                            <strong>#{{ order.id }}</strong>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between">
+                            <span>Дата:</span>
+                            <strong>{{ order.created_timestamp|date:"d E Y" }}</strong>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between">
+                            <span>Статус:</span>
+                            <strong class="text-primary">{{ order.get_status_display }}</strong>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between">
+                            <span>Получатель:</span>
+                            <strong>{{ order.first_name }} {{ order.last_name }}</strong>
+                        </li>
+                    </ul>
+                </div>
+                {% endif %}
+
+                <!-- 3. Нижняя часть с кнопками и логотипом -->
+                <div class="success-card-footer">
+                    <div class="next-steps-buttons">
+                        <a href="{% url 'products:index' %}" class="btn btn-outline-secondary btn-lg px-4">Продолжить покупки</a>
+                        <a href="{% url 'users:profile' %}" class="btn btn-primary btn-lg px-4">Перейти к моим заказам</a>
+                    </div>
+                    <img src="{% static 'favicon/favicon.png' %}" class="footer-logo" alt="Apple Logo">
+                </div>
+            </div>
+            <!-- ======================================================= -->
+            <!-- КОНЕЦ НОВОГО БЛОКА                                      -->
+            <!-- ======================================================= -->
+
+        </div>
+    </div>
+</div>
+{% endblock %}
