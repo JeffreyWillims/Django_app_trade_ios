@@ -5,49 +5,63 @@ from django.forms import ValidationError
 from django.shortcuts import redirect
 from django.urls import reverse_lazy, reverse
 from django.views.generic import CreateView, TemplateView
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
 from django.contrib import messages
 
 from .forms import OrderCreateForm
 from .models import Order, OrderItem
 from carts.models import Cart
 
+# Настраиваем Stripe API ключ при запуске
 stripe.api_key = settings.STRIPE_SECRET_KEY
 
 
-class OrderCreateView(LoginRequiredMixin, CreateView):
+@method_decorator(login_required(login_url=reverse_lazy('users:login')), name='dispatch')
+class OrderCreateView(CreateView):
     template_name = 'orders/create_order.html'
     form_class = OrderCreateForm
 
-    # success_url нам не нужен, так как мы делаем редирект в Stripe
+    # success_url нам не нужен, так как мы делаем редирект в Stripe, а потом на order_success
 
     def dispatch(self, request, *args, **kwargs):
+        """
+        Переопределяем dispatch, чтобы сначала проверить корзину.
+        Этот метод вызовется ПОСЛЕ проверки login_required благодаря декоратору.
+        """
         if not Cart.objects.filter(user=request.user).exists():
             messages.error(request, 'Ваша корзина пуста. Невозможно оформить заказ.')
             return redirect('products:index')
         return super().dispatch(request, *args, **kwargs)
 
     def form_valid(self, form):
+        """
+        Главная бизнес-логика: создание заказа и сессии оплаты.
+        """
         try:
             with transaction.atomic():
+                # Создаем заказ
                 order = form.save(commit=False)
                 order.user = self.request.user
                 order.save()
 
+                # Переносим товары из корзины в заказ
                 user_carts = Cart.objects.filter(user=self.request.user)
                 line_items = []
-
                 for cart_item in user_carts:
+                    # Проверка наличия на складе
                     if cart_item.product.quantity < cart_item.quantity:
-                        raise ValidationError(f'Недостаточно товара {cart_item.product.name} на складе.')
+                        raise ValidationError(f'Недостаточно товара "{cart_item.product.name}" на складе.')
 
                     OrderItem.objects.create(
                         order=order, product=cart_item.product, name=cart_item.product.name,
                         price=cart_item.product.sell_price, quantity=cart_item.quantity
                     )
+                    # Уменьшаем остатки
                     cart_item.product.quantity -= cart_item.quantity
                     cart_item.product.save()
 
+                    # Готовим список товаров для Stripe
                     line_items.append({
                         'price_data': {
                             'currency': 'rub', 'unit_amount': int(cart_item.product.sell_price * 100),
@@ -56,9 +70,11 @@ class OrderCreateView(LoginRequiredMixin, CreateView):
                         'quantity': cart_item.quantity,
                     })
 
+                # Очищаем корзину и сохраняем ID заказа в сессию
                 user_carts.delete()
                 self.request.session['last_order_id'] = order.id
 
+            # Создаем сессию оплаты в Stripe
             checkout_session = stripe.checkout.Session.create(
                 line_items=line_items, mode='payment',
                 success_url='{}{}'.format(settings.YOUR_DOMAIN, reverse('orders:order_success')),
@@ -68,10 +84,13 @@ class OrderCreateView(LoginRequiredMixin, CreateView):
             return redirect(checkout_session.url, code=303)
 
         except ValidationError as e:
-            form.add_error(None, e.message)
+            messages.error(self.request, e.message)
             return self.form_invalid(form)
 
     def get_initial(self):
+        """
+        Предзаполняет форму данными пользователя.
+        """
         initial = super().get_initial()
         user = self.request.user
         if user.is_authenticated:
@@ -82,13 +101,17 @@ class OrderCreateView(LoginRequiredMixin, CreateView):
         return initial
 
     def get_context_data(self, **kwargs):
+        """
+        Передает в шаблон заголовок и состав корзины.
+        """
         context = super().get_context_data(**kwargs)
         context['title'] = 'Оформление заказа'
         context['carts'] = Cart.objects.filter(user=self.request.user)
         return context
 
 
-class OrderSuccessView(LoginRequiredMixin, TemplateView):
+@method_decorator(login_required(login_url=reverse_lazy('users:login')), name='dispatch')
+class OrderSuccessView(TemplateView):
     template_name = 'orders/order_success.html'
 
     def get_context_data(self, **kwargs):

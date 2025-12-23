@@ -1,4 +1,4 @@
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponseBadRequest
 from django.shortcuts import get_object_or_404, redirect
 from django.template.loader import render_to_string
 
@@ -46,7 +46,7 @@ def cart_add(request, product_slug):
         }
         return JsonResponse(response_data)
 
-    # Если это обычный запрос (например, без JavaScript), делаем редирект
+    # Если это обычный запрос, делаем редирект
     return redirect(request.META.get('HTTP_REFERER'))
 
 
@@ -62,7 +62,7 @@ def cart_remove(request, cart_id):
     if cart_item:
         cart_item.delete()
 
-    # AJAX-ответ (идентичен, но с другим сообщением)
+    # AJAX-ответ
     if request.headers.get('x-requested-with') == 'XMLHttpRequest':
         carts = get_user_carts(request)
         cart_component_html = render_to_string(
@@ -81,8 +81,34 @@ def cart_remove(request, cart_id):
 
 def cart_change_quantity(request, cart_id):
     """
-    Изменяет количество товара в корзине (увеличить/уменьшить).
-    Мы добавим эту логику в будущем.
+    AJAX-контроллер для изменения количества товара в корзине.
     """
-    # TODO: Реализовать логику для кнопок "+" и "-"
-    pass
+    # Мы ожидаем только POST-запросы
+    if request.method == 'POST':
+        cart_item = get_object_or_404(Cart, id=cart_id)
+        action = request.POST.get('action') # 'increment' или 'decrement'
+
+        if action == 'increment':
+            cart_item.quantity += 1
+            cart_item.save()
+        elif action == 'decrement':
+            cart_item.quantity -= 1
+            if cart_item.quantity <= 0:
+                cart_item.delete()
+            else:
+                cart_item.save()
+
+        # Возвращаем обновленный HTML для всей корзины, как и в других view
+        carts = get_user_carts(request)
+        cart_component_html = render_to_string(
+            'carts/includes/included_cart.html', {'carts': carts, 'request': request}
+        )
+        response_data = {
+            'message': 'Количество изменено',
+            'cart_component_html': cart_component_html,
+            'total_quantity': carts.total_quantity() if carts else 0,
+        }
+        return JsonResponse(response_data)
+
+    # Если кто-то попытается зайти на этот URL через GET, возвращаем ошибку
+    return HttpResponseBadRequest("Invalid request method")

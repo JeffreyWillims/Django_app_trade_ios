@@ -20,8 +20,12 @@
                             {{ cart_item.product.name }}
                         </a>
                     </div>
-                    <div class="col-2 col-md-2 text-center">
-                        <strong>{{ cart_item.quantity }} шт.</strong>
+                    <div class="col-3 col-md-3 text-center">
+                        <div class="input-group">
+                            <button class="btn btn-outline-secondary btn-sm cart-quantity-change" data-action="decrement" data-url="{% url 'carts:cart_change_quantity' cart_id=cart_item.id %}">-</button>
+                            <input type="text" class="form-control form-control-sm text-center" value="{{ cart_item.quantity }}" readonly>
+                            <button class="btn btn-outline-secondary btn-sm cart-quantity-change" data-action="increment" data-url="{% url 'carts:cart_change_quantity' cart_id=cart_item.id %}">+</button>
+                        </div>
                     </div>
                     <div class="col-2 col-md-2 text-end">
                         <strong class="text-nowrap">{{ cart_item.products_price }} ₽</strong>
