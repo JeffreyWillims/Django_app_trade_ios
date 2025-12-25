@@ -1,114 +1,74 @@
-/**
- * ====================================================================
- * iOStrade - Cart Interaction Logic (AJAX)
- * Version: 2.0 (Full Functionality)
- * ====================================================================
- */
-
-/**
- * Получает CSRF-токен из cookie.
- * @param {string} name - Имя cookie (обычно 'csrftoken').
- * @returns {string|null} - Значение токена или null.
- */
-function getCookie(name) {
-    let cookieValue = null;
-    if (document.cookie && document.cookie !== '') {
-        const cookies = document.cookie.split(';');
-        for (let i = 0; i < cookies.length; i++) {
-            const cookie = cookies[i].trim();
-            // Начинается ли строка с имени, которое мы ищем?
-            if (cookie.substring(0, name.length + 1) === (name + '=')) {
-                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-                break;
+document.addEventListener('DOMContentLoaded', function () {
+    function getCookie(name) {
+        let cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+            const cookies = document.cookie.split(';');
+            for (let i = 0; i < cookies.length; i++) {
+                const cookie = cookies[i].trim();
+                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
             }
         }
+        return cookieValue;
     }
-    return cookieValue;
-}
-
-
-/**
- * Обновляет все компоненты корзины и счетчики на странице.
- * @param {object} data - JSON-объект, полученный от сервера.
- */
-function updateUI(data) {
-    // Обновляем основной компонент корзины (в модальном окне, на странице профиля)
-    const cartContainers = document.querySelectorAll('.cart-component-container');
-    if (cartContainers.length > 0 && data.cart_component_html) {
-        cartContainers.forEach(container => {
-            container.innerHTML = data.cart_component_html;
-        });
+    function showToast(message, status = 'success') {
+        const toastContainer = document.querySelector('.toast-container');
+        if (!toastContainer) return;
+        const toastColor = status === 'success' ? 'primary' : 'danger';
+        const toastId = `toast-${Date.now()}`;
+        const toastHTML = `<div id="${toastId}" class="toast align-items-center text-bg-${toastColor} border-0" role="alert" aria-live="assertive" aria-atomic="true"><div class="d-flex"><div class="toast-body">${message}</div><button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button></div></div>`;
+        toastContainer.insertAdjacentHTML('beforeend', toastHTML);
+        const newToastEl = document.getElementById(toastId);
+        const newToast = new bootstrap.Toast(newToastEl, { delay: 3000 });
+        newToast.show();
+        newToastEl.addEventListener('hidden.bs.toast', () => newToastEl.remove());
     }
-
-    // Обновляем все счетчики
-    const counterBadges = document.querySelectorAll('.cart-counter-badge');
-    if (counterBadges.length > 0 && typeof data.total_quantity !== 'undefined') {
-        counterBadges.forEach(badge => {
-            badge.textContent = data.total_quantity;
-            badge.style.display = data.total_quantity > 0 ? 'inline-block' : 'none';
-        });
+    function updateUI(data) {
+        if (data.cart_component_html) {
+            document.querySelectorAll('.cart-component-container').forEach(c => { c.innerHTML = data.cart_component_html; });
+        }
+        if (typeof data.total_quantity !== 'undefined') {
+            document.querySelectorAll('.cart-counter-badge').forEach(b => {
+                b.textContent = data.total_quantity;
+                b.style.display = data.total_quantity > 0 ? 'inline-block' : 'none';
+            });
+        }
     }
-}
-
-
-// Основной "прослушиватель" событий, который срабатывает при загрузке страницы
-document.addEventListener('DOMContentLoaded', () => {
-
-    // Используем делегирование событий: один "слушатель" на весь body
     document.body.addEventListener('click', async (event) => {
-
-        // Ищем, был ли клик по кнопке добавления или удаления
-        const simpleCartButton = event.target.closest('.add-to-cart-btn, .remove-from-cart-btn');
-        // Ищем, был ли клик по кнопке изменения количества
-        const quantityChangeButton = event.target.closest('.cart-quantity-change');
-
-        // --- Обработчик для ДОБАВЛЕНИЯ / УДАЛЕНИЯ (GET-запрос) ---
-        if (simpleCartButton) {
-            event.preventDefault(); // Отменяем стандартный переход по ссылке
-            const url = simpleCartButton.href;
-
-            try {
-                const response = await fetch(url, {
-                    method: 'GET',
-                    headers: { 'X-Requested-With': 'XMLHttpRequest' },
-                });
-                if (!response.ok) throw new Error('Network error on GET request.');
-
-                const data = await response.json();
-                updateUI(data); // Обновляем интерфейс
-            } catch (error) {
-                console.error('AJAX GET Error:', error);
-                window.location.reload(); // Запасной вариант: перезагрузить страницу
+        const button = event.target.closest('.ajax-cart-btn');
+        if (!button) return;
+        event.preventDefault();
+        const url = button.dataset.url || button.href;
+        const method = button.dataset.method || 'GET';
+        let headers = { 'X-Requested-With': 'XMLHttpRequest' };
+        let body = null;
+        if (method === 'POST') {
+            const csrfToken = getCookie('csrftoken');
+            if (!csrfToken) {
+                console.error('CSRF token not found!');
+                showToast('Ошибка безопасности.', 'error');
+                return;
             }
-        }
-
-        // --- Обработчик для ИЗМЕНЕНИЯ КОЛИЧЕСТВА (POST-запрос) ---
-        if (quantityChangeButton) {
-            event.preventDefault();
-            const url = quantityChangeButton.dataset.url;
-            const action = quantityChangeButton.dataset.action;
-            const csrfToken = getCookie('csrftoken'); // Получаем CSRF-токен
-
+            headers['X-CSRFToken'] = csrfToken;
             const formData = new FormData();
-            formData.append('action', action);
-
-            try {
-                const response = await fetch(url, {
-                    method: 'POST',
-                    headers: {
-                        'X-Requested-With': 'XMLHttpRequest',
-                        'X-CSRFToken': csrfToken, // Отправляем CSRF-токен в заголовке
-                    },
-                    body: formData,
-                });
-                if (!response.ok) throw new Error('Network error on POST request.');
-
-                const data = await response.json();
-                updateUI(data); // Обновляем интерфейс
-            } catch (error) {
-                console.error('AJAX POST Error:', error);
-                window.location.reload(); // Запасной вариант
+            if (button.dataset.action) {
+                formData.append('action', button.dataset.action);
             }
+            body = formData;
+        }
+        try {
+            const response = await fetch(url, { method, headers, body });
+            if (!response.ok) throw new Error(`Server error: ${response.status}`);
+            const data = await response.json();
+            updateUI(data);
+            if (data.message) {
+                showToast(data.message);
+            }
+        } catch (error) {
+            console.error('AJAX Error:', error);
+            showToast('Ошибка. Обновите страницу.', 'error');
         }
     });
 });

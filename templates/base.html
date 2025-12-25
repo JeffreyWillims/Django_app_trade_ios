@@ -125,20 +125,26 @@
                     </h5>
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-
                 <div class="modal-body cart-component-container">
                     {% user_cart %}
                 </div>
-
             </div>
         </div>
+    </div>
+
+    <!-- ======================================== -->
+    <!-- КОНТЕЙНЕР ДЛЯ УВЕДОМЛЕНИЙ (TOASTS)        -->
+    <!-- ======================================== -->
+    <div class="toast-container position-fixed top-0 end-0 p-3" style="z-index: 1100">
+        <!-- Сюда JavaScript будет добавлять новые уведомления -->
     </div>
 
     <!-- ======================================== -->
     <!-- СКРИПТЫ                                -->
     <!-- ======================================== -->
     <script src="{% static 'js/bootstrap/bootstrap.bundle.min.js' %}"></script>
-    {% block js %}{% endblock %}
     <script src="{% static 'js/cart.js' %}"></script>
+    {% block js %}{% endblock %}
+
 </body>
 </html>

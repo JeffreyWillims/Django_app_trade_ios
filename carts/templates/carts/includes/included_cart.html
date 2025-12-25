@@ -8,33 +8,25 @@
                 <div class="row d-flex align-items-center">
                     <div class="col-3 col-md-2">
                         <a href="{% url 'products:product' cart_item.product.slug %}">
-                            {% if cart_item.product.image %}
-                                <img src="{{ cart_item.product.image.url }}" class="img-fluid rounded" alt="{{ cart_item.product.name }}">
-                            {% else %}
-                                <img src="{% static 'images/Not found image.png' %}" class="img-fluid rounded" alt="Нет изображения">
-                            {% endif %}
+                            <img src="{{ cart_item.product.image.url|default_if_none:'' }}" class="img-fluid rounded" alt="{{ cart_item.product.name }}">
                         </a>
                     </div>
                     <div class="col-5 col-md-5">
-                        <a href="{% url 'products:product' cart_item.product.slug %}" class="text-dark text-decoration-none">
-                            {{ cart_item.product.name }}
-                        </a>
+                        <a href="{% url 'products:product' cart_item.product.slug %}" class="text-dark text-decoration-none">{{ cart_item.product.name }}</a>
                     </div>
-                    <div class="col-3 col-md-3 text-center">
+                    <div class="col-4 col-md-3">
                         <div class="input-group">
-                            <button class="btn btn-outline-secondary btn-sm cart-quantity-change" data-action="decrement" data-url="{% url 'carts:cart_change_quantity' cart_id=cart_item.id %}">-</button>
+                            <button class="btn btn-outline-secondary btn-sm ajax-cart-btn" data-method="POST" data-action="decrement" data-url="{% url 'carts:cart_change_quantity' cart_id=cart_item.id %}">-</button>
                             <input type="text" class="form-control form-control-sm text-center" value="{{ cart_item.quantity }}" readonly>
-                            <button class="btn btn-outline-secondary btn-sm cart-quantity-change" data-action="increment" data-url="{% url 'carts:cart_change_quantity' cart_id=cart_item.id %}">+</button>
+                            <button class="btn btn-outline-secondary btn-sm ajax-cart-btn" data-method="POST" data-action="increment" data-url="{% url 'carts:cart_change_quantity' cart_id=cart_item.id %}">+</button>
                         </div>
                     </div>
-                    <div class="col-2 col-md-2 text-end">
+                    <div class="col-12 col-md-2 text-end">
                         <strong class="text-nowrap">{{ cart_item.products_price }} ₽</strong>
                     </div>
-                    <div class="col-12 col-md-1 text-end mt-2 mt-md-0">
-                        <a href="{% url 'carts:cart_remove' cart_id=cart_item.id %}" class="text-danger remove-from-cart-btn">
-                            <img src="{% static 'icons/trash3-fill.svg' %}" alt="Удалить" width="16" height="16">
-                        </a>
-                    </div>
+                    <a href="{% url 'carts:cart_remove' cart_id=cart_item.id %}" class="position-absolute top-0 end-0 p-2 text-danger ajax-cart-btn" title="Удалить">
+                        <img src="{% static 'icons/trash3-fill.svg' %}" alt="Удалить" width="16" height="16">
+                    </a>
                 </div>
             </li>
         {% endfor %}
@@ -51,3 +43,4 @@
 {% else %}
     <p class="text-center text-muted py-4">Ваша корзина пуста.</p>
 {% endif %}
+</div>

@@ -19,7 +19,6 @@ main { flex-grow: 1; }
 .product-card-img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: contain; transition: transform 0.3s ease-in-out; }
 .product-card:hover .product-card-img { transform: scale(1.05); }
 .product-card-discount-badge { position: absolute; top: 10px; left: 10px; font-size: 0.8rem; z-index: 1; }
-.stretched-link::after { position: absolute; top: 0; right: 0; bottom: 0; left: 0; z-index: 1; content: ""; }
 .list-group { border: none; border-radius: 12px; }
 .list-group-item.active { background-color: var(--ios-dark-gray); border-color: var(--ios-dark-gray); }
 .list-group-item-action:hover, .list-group-item-action:focus { background-color: var(--ios-light-gray); color: var(--ios-blue); }
@@ -130,3 +129,5 @@ main { flex-grow: 1; }
     flex-shrink: 1; /* Позволяем блоку сжиматься на маленьких экранах */
     margin-left: 1rem;
 }
+
+

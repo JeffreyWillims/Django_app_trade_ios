@@ -47,8 +47,8 @@
 
                 <!-- Кнопка "В корзину" и наличие -->
                 <div class="mt-auto">
-                    <div class="d-grid gap-2"> {# d-grid растянет кнопку на всю ширину #}
-                        <a href="{% url 'carts:cart_add' product_slug=product.slug %}" class="btn btn-primary btn-lg add-to-cart-btn">Добавить в корзину</a>
+                    <div class="d-grid gap-2">
+                        <a href="{% url 'carts:cart_add' product_slug=product.slug %}" class="btn btn-primary btn-lg ajax-cart-btn">Добавить в корзину</a>
                     </div>
                     {% if product.quantity > 0 %}
                         <p class="text-success text-center mt-2"><small>В наличии ({{ product.quantity }} шт.)</small></p>
