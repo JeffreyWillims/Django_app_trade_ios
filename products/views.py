@@ -16,38 +16,26 @@ class ProductListView(ListView):
         2. Фильтрация по акции.
         3. Сортировка.
         """
-        # 1. Получаем базовый queryset
         queryset = super().get_queryset().select_related('category')
 
-        # --- Начало логики Поиска ---
+
         query = self.request.GET.get('q')
         if query:
-            # Q-объекты позволяют строить сложные запросы с использованием "ИЛИ"
-            # Мы ищем совпадение query в поле "name" или в поле 'description'
-            # __icontains означает 'содержит, без учета регистра'
             queryset = queryset.filter(
                 Q(name__icontains=query) | Q(description__icontains=query)
             )
-        # --- КОНЕЦ НОВОЙ ЛОГИКИ ПОИСКА ---
 
-        # 2. Получаем 'category_slug' из URL.
-        # self.kwargs - это словарь с именованными параметрами из URL.
-        # Он заполняется благодаря <slug:category_slug> в твоем urls.py
         category_slug = self.kwargs.get('category_slug')
 
-        # 3. Применяем фильтр по категории, ЕСЛИ мы на странице категории
         if category_slug:
             queryset = queryset.filter(category__slug=category_slug)
 
-        # 4. Получаем параметры фильтров и сортировки из GET-запроса
         on_sale = self.request.GET.get('on_sale')
         order_by = self.request.GET.get('order_by')
 
-        # 5. Применяем фильтр по акции
         if on_sale == 'on':
             queryset = queryset.filter(discount__gt=0)
 
-        # 6. Применяем сортировку
         if order_by and order_by != 'default':
             queryset = queryset.order_by(order_by)
 
@@ -67,8 +55,8 @@ class ProductDetailView(DetailView):
     """
     model = Product
     template_name = 'products/product_detail.html'
-    context_object_name = 'product'  # Имя для объекта продукта в шаблоне
-    slug_url_kwarg = 'product_slug'  # Явно указываем, какой параметр из URL использовать для поиска
+    context_object_name = 'product'
+    slug_url_kwarg = 'product_slug'
 
     def get_context_data(self, **kwargs):
         """

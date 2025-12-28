@@ -13,7 +13,7 @@ from .forms import OrderCreateForm
 from .models import Order, OrderItem
 from carts.models import Cart
 
-# Настраиваем Stripe API ключ при запуске
+
 stripe.api_key = settings.STRIPE_SECRET_KEY
 
 
@@ -22,12 +22,9 @@ class OrderCreateView(CreateView):
     template_name = 'orders/create_order.html'
     form_class = OrderCreateForm
 
-    # success_url нам не нужен, так как мы делаем редирект в Stripe, а потом на order_success
-
     def dispatch(self, request, *args, **kwargs):
         """
         Переопределяем dispatch, чтобы сначала проверить корзину.
-        Этот метод вызовется ПОСЛЕ проверки login_required благодаря декоратору.
         """
         if not Cart.objects.filter(user=request.user).exists():
             messages.error(request, 'Ваша корзина пуста. Невозможно оформить заказ.')
@@ -36,7 +33,7 @@ class OrderCreateView(CreateView):
 
     def form_valid(self, form):
         """
-        Главная бизнес-логика: создание заказа и сессии оплаты.
+        Создание заказа и сессии оплаты.
         """
         try:
             with transaction.atomic():

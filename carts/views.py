@@ -28,7 +28,6 @@ def cart_add(request, product_slug):
 
 def cart_remove(request, cart_id):
     cart_item = get_object_or_404(Cart, id=cart_id)
-    # TODO: Проверка прав пользователя
     cart_item.delete()
     if request.headers.get('x-requested-with') == 'XMLHttpRequest':
         carts = get_user_carts(request)

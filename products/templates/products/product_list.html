@@ -6,9 +6,7 @@
 {% endblock %}
 {% block content %}
 <div class="container mt-5">
-    <!-- ==================================================================== -->
-    <!-- Плавающая кнопка корзины                                             -->
-    <!-- ==================================================================== -->
+
     <div class="position-fixed z-3" style="top: 8rem; right: 2rem;">
         <button type="button" class="btn btn-dark btn-secondary d-flex align-items-center p-2 rounded-circle shadow-lg position-relative" data-bs-toggle="modal" data-bs-target="#cartModal" title="Открыть корзину">
             <img class="mx-1" src="{% static 'icons/basket2-fill.svg' %}" alt="Корзина" width="24" height="24">
@@ -16,9 +14,7 @@
         </button>
     </div>
     <div class="row">
-        <!-- ==================================================================== -->
-        <!-- Левая колонка: Сайдбар (Фильтры и Категории)                        -->
-        <!-- ==================================================================== -->
+
         <div class="col-lg-3">
             <div class="sticky-top" style="top: 2rem;">
                 <!-- Категории -->
@@ -71,9 +67,6 @@
             </div>
         </div>
 
-        <!-- ==================================================================== -->
-        <!-- Правая колонка: Товары и Пагинация                                   -->
-        <!-- ==================================================================== -->
         <div class="col-lg-9">
             <div class="catalog-header">
                 {% if request.GET.q %}

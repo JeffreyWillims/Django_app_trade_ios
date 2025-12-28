@@ -7,7 +7,6 @@ class CartQueryset(models.QuerySet):
     """
     Кастомный QuerySet для оптимизации запросов к корзине.
     """
-
     def total_quantity(self):
         # Вычисляет общее количество товаров в корзине
         if self:

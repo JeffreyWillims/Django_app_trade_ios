@@ -19,12 +19,9 @@ class UserLoginView(SuccessMessageMixin, LoginView):
     success_message = '%(username)s, вы успешно вошли в аккаунт.'
 
     def form_valid(self, form):
-        # 1. ЗАПОМИНАЕМ СТАРЫЙ КЛЮЧ
         session_key = self.request.session.session_key
-        # 2. ЛОГИНИМ ПОЛЬЗОВАТЕЛЯ (СЕССИЯ МЕНЯЕТСЯ)
         user = form.get_user()
         auth.login(self.request, user)
-        # 3. ВЫПОЛНЯЕМ СЛИЯНИЕ ПО СТАРОМУ КЛЮЧУ
         if session_key:
             try:
                 anon_cart = Cart.objects.filter(session_key=session_key)
@@ -36,7 +33,6 @@ class UserLoginView(SuccessMessageMixin, LoginView):
                     anon_cart.delete()
             except Exception as e:
                 print(f"Login cart merge error: {e}")
-        # 4. ДЕЛАЕМ РЕДИРЕКТ
         return super().form_valid(form)
 
     def get_success_url(self):
@@ -52,12 +48,9 @@ class UserRegistrationView(SuccessMessageMixin, CreateView):
     success_message = '%(username)s, вы успешно зарегистрированы.'
 
     def form_valid(self, form):
-        # 1. ЗАПОМИНАЕМ СТАРЫЙ КЛЮЧ
         session_key = self.request.session.session_key
-        # 2. СОХРАНЯЕМ И ЛОГИНИМ ПОЛЬЗОВАТЕЛЯ
         user = form.save()
         auth.login(self.request, user)
-        # 3. ВЫПОЛНЯЕМ СЛИЯНИЕ ПО СТАРОМУ КЛЮЧУ
         if session_key:
             try:
                 anon_cart = Cart.objects.filter(session_key=session_key)
@@ -69,11 +62,10 @@ class UserRegistrationView(SuccessMessageMixin, CreateView):
                     anon_cart.delete()
             except Exception as e:
                 print(f"Registration cart merge error: {e}")
-        # 4. ДЕЛАЕМ РЕДИРЕКТ
         messages.success(self.request, self.get_success_message(form.cleaned_data))
         return redirect(self.success_url)
 
-# ... UserProfileView и logout_view остаются БЕЗ ИЗМЕНЕНИЙ ...
+
 class UserProfileView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
     model = User
     form_class = ProfileForm

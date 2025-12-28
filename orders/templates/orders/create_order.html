@@ -18,7 +18,6 @@
                     <form action="{% url 'orders:create_order' %}" method="post" novalidate>
                         {% csrf_token %}
 
-                        <!-- Рендерим нашу Django-форму. Она уже стилизована. -->
                         <div class="row">
                             <div class="col-md-6 mb-3">
                                 {{ form.first_name.label_tag }}
